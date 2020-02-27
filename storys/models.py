@@ -5,11 +5,19 @@ User = get_user_model()
 
 # Create your models here.
 
+class Genre(models.Model):
+    type = models.CharField(max_length=50) 
+
+    def __str__(self):
+        return self.type
+
 class Story(models.Model): 
   title = models.CharField(max_length=50)
   age_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(8), MaxValueValidator(12)]) 
   image = models.CharField(max_length=200)
-  lineStart = models.CharField(max_length=400, default='SOME STRING')
+  lineStart = models.CharField(max_length=400, default='Your first line')
+  owner = models.ForeignKey(User, related_name='storys', null=True, on_delete=models.CASCADE)
+  genre = models.ManyToManyField(Genre, related_name='storys', blank=True)  
   
 
   def __str__(self):

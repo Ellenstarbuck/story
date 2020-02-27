@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Story, Line
+from .models import Story, Line, Genre
 User = get_user_model()
 
 
@@ -8,6 +8,12 @@ class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
     fields = ('id', 'username')
+
+class GenreSerializer(serializers.ModelSerializer): 
+
+    class Meta:
+        model = Genre 
+        fields = ('id', 'type')
 
 class StorySerializer(serializers.ModelSerializer):
 
@@ -25,4 +31,6 @@ class PopulatedLineSerializer(LineSerializer):
   owner = UserSerializer()
 
 class PopulatedStorySerializer(StorySerializer):
+    owner = UserSerializer()
     lines = PopulatedLineSerializer(many=True)
+    genre = GenreSerializer(many=True)
