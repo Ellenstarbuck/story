@@ -9,6 +9,7 @@ class Story(models.Model):
   title = models.CharField(max_length=50)
   age_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(8), MaxValueValidator(12)]) 
   image = models.CharField(max_length=200)
+  lineStart = models.CharField(max_length=400, default='SOME STRING')
   
 
   def __str__(self):

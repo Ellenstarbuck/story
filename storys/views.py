@@ -31,7 +31,7 @@ class StoryDetailView(APIView):
 
 class LineListView(APIView):
 
-  permission_classes = (IsAuthenticatedOrReadOnly, )
+  # permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request, pk):
     request.data['story'] = pk
