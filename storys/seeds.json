@@ -3,11 +3,11 @@
     "model": "storys.story",
     "pk": 1,
     "fields": {
-      "title": "xy Grandad, the Dragon",
+      "title": "My Grandad, the Dragon",
       "age_rating":10,
       "image": "https://i.imgur.com/S2CPLIx.jpg",
-      "lineStart": "",
-      "owner": 1, 
+      "lineStart": "My Grandad wasn't always a dragon. He used to be a normal Grandad. But then we all went on holiday to Ireland, and that's where we met the good witch of Dublin. ",
+      "owner": null, 
       "genre": [
         1,
         9
@@ -22,7 +22,7 @@
       "age_rating": 9,
       "image": "https://i.imgur.com/jokaS7I.jpg",
       "lineStart": "It was a really big bubble. Bigger then a really big dog, but smaller than a small sized nan. But there was something special about it. It wouldn't pop!",
-      "owner": 2,
+      "owner": null,
       "genre": [
         5,
         7
@@ -37,7 +37,7 @@
       "age_rating": 10,
       "image": "https://i.imgur.com/9nBjlV5.jpg",
       "lineStart":"Mark was excited about his birthday. His mum said he could have any cake he wanted from 'The Dough Knot', his favourite bakery. But when he went in to pick out the cake, no one was there. Not even the owner Mrs Mingles. And the lights were off.",
-      "owner": 3,
+      "owner": null,
       "genre": [
         3
       ]
@@ -51,7 +51,7 @@
       "age_rating": 8,
       "image": "https://i.imgur.com/2IYXJhW.jpg",
       "lineStart": "Captain Blackbeard put on his spacesuit and stepped outside his spaceship 'The Mary Celestial'",
-      "owner": 4,
+      "owner": null,
       "genre": [
         2,
         1
@@ -66,7 +66,7 @@
       "age_rating": 12,
       "image": "https://i.imgur.com/5tFCgrk.jpg",
       "lineStart":"Ella's parent's didn't have a computer, and she felt left out on school. Especially when they talked about this amazing website called @Lantis. They said it was the best one ever, but wouldn't tell her what was on it. And then one day, it disapeered.",
-      "owner": 5,
+      "owner": null,
       "genre": [
         4,
         7
@@ -81,7 +81,7 @@
       "age_rating": 8,
       "image": "https://i.imgur.com/XSFgwvJ.jpg",
       "lineStart": "There was once a pig in a hat, whose best friend was a cat",
-      "owner": 6,
+      "owner": null,
       "genre": [
         5,
         8

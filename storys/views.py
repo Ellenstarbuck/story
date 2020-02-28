@@ -69,17 +69,37 @@ class LineListView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request, pk):
-    request.data['story'] = pk
-    request.data['owner'] = request.user.id
-    line = LineSerializer(data=request.data)
-
-    if line.is_valid():
-      line.save()
-      story = Story.objects.get(pk=pk)
-      serialized_story = PopulatedStorySerializer(story)
-
-      return Response(serialized_story.data, status=HTTP_201_CREATED)
-    return Response(line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)  
+        request.data['owner'] = request.user.id
+        print(request.user.id)
+        request.data['story'] = pk
+        line = LineSerializer(data=request.data)
+        story = Story.objects.get(pk=pk)
+        serialized_story = PopulatedStorySerializer(story)
+        request.data['owner'] = request.user.id
+        index_last_story = len(serialized_story.data.get("lines")) - 1
+        lines_list_length = len(serialized_story.data.get("lines"))
+        # list_int = int(lines_list_length)
+        print(lines_list_length)
+        if lines_list_length:
+            last_story = serialized_story.data.get("lines")[index_last_story]
+            last_owner = last_story.get("owner")
+        if lines_list_length > 0:
+          if last_owner.get("id") == request.user.id:
+            return Response(status=HTTP_401_UNAUTHORIZED)
+        if line.is_valid():
+          line.save()
+          story = Story.objects.get(pk=pk)
+          serialized_story = PopulatedStorySerializer(story)
+          return Response(serialized_story.data)
+        return Response(line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)    
+        # //request data user is the same as that owner
+        # check = user == user
+#get hold of the owner of the previous line
+#print the previous line
+#go to root that you need insomina
+#do a if statement
+#map through the lines, and get the length -1
+#if the current user = this, then not allowed
 
 class LineDetailView(APIView):
 

@@ -15,5 +15,5 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = ('id', 'text', 'storys' )
 
 class PopulatedGenreSerializer(GenreSerializer):
-    storys = GenreSerializer(many=True)
+    storys = StorySerializer(many=True)
 
