@@ -1,0 +1,65 @@
+[
+  {
+    "model": "genres.genre",
+    "pk": 1,
+    "fields": {
+      "text": "Funny"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 2,
+    "fields": {
+      "text": "Sci-fi"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 3,
+    "fields": {
+      "text": "Spooky"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 4,
+    "fields": {
+      "text": "Internet"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 5,
+    "fields": {
+      "text": "Cute"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 6,
+    "fields": {
+      "text": "Fairy Tales"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 7,
+    "fields": {
+      "text": "Mystery"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 8,
+    "fields": {
+      "text": "Poetry"
+    }
+  },
+  {
+    "model": "genres.genre",
+    "pk": 9,
+    "fields": {
+      "text": "Magic"
+    }
+  }
+]
