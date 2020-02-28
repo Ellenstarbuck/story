@@ -12,3 +12,5 @@ class GenreListView(APIView):
         serialized_genres = PopulatedGenreSerializer(genres, many=True)
         return Response(serialized_genres.data)
 
+
+

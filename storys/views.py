@@ -3,7 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_401_UNAUTHORIZED, HTTP_404_NOT_FOUND, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Story, Line, Genre
+from .models import Story, Line
+
 from .serializers import StorySerializer, LineSerializer, PopulatedStorySerializer, UserSerializer, GenreSerializer
 
 # Create your views here.
@@ -94,11 +95,3 @@ class LineDetailView(APIView):
       return Response(status=HTTP_204_NO_CONTENT) 
     except Line.DoesNotExist:
       return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)   
-
-class GenreListView(APIView): 
-    permission_classes = (IsAuthenticatedOrReadOnly, )
-
-    def get(self, _request): 
-        genre = Genre.objects.all() 
-        serialized_genres = GenreSerializer(genre, many=True) 
-        return Response(serialized_genres.data)     
