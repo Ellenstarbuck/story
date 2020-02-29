@@ -70,7 +70,6 @@ class LineListView(APIView):
 
   def post(self, request, pk):
         request.data['owner'] = request.user.id
-        print(request.user.id)
         request.data['story'] = pk
         line = LineSerializer(data=request.data)
         story = Story.objects.get(pk=pk)
