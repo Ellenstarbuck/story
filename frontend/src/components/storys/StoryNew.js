@@ -11,7 +11,7 @@ class StoryNew extends React.Component{
     data: {
       title: '',
       age_rating: '',
-      image: '',
+      image: null,
       lineStart: '',
       genre: '',
       owner: ''
@@ -53,6 +53,17 @@ class StoryNew extends React.Component{
     }
   }
 
+  handleUpload = async ({ target: { files } }) => {
+    const data = new FormData
+    data.append('file', files[0])
+    data.append('upload_preset', 'rksde5wr')
+    const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
+    console.log(res)
+    this.setState({ image: res.data.url }, () => {
+      this.handleChange({ target: { name: 'image', value: res.data.url } })
+    })
+  }
+
   
 
   // handleMultiChange = (selected) => {
@@ -66,12 +77,14 @@ class StoryNew extends React.Component{
 
 
   render() {
+  
     return (
       <section className="section">
         <div className="container">
           <StoryForm data={this.state.data}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            handleUpload={this.handleUpload}
             // handleMultiChange={this.handleMultiChange}
           />
         </div>

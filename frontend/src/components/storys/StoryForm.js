@@ -1,10 +1,11 @@
 import React from 'react'
-import Select from 'react-select'
+// import Select from 'react-select'
 
 
 
 
-const StoryForm = ({ data, handleChange, handleSubmit }) => {
+const StoryForm = ({ data, handleChange, handleSubmit, handleUpload }) => {
+  
   
   // const options = [
   //   { key: '1', label: 'Funny' }, //label is shown to user
@@ -49,7 +50,7 @@ const StoryForm = ({ data, handleChange, handleSubmit }) => {
           </div>
         </div>
         <div className="box">
-        <div className="field">
+        {/* <div className="field">
           <label className="label">Image</label>
           <div className="control">
             <input 
@@ -61,7 +62,21 @@ const StoryForm = ({ data, handleChange, handleSubmit }) => {
               value={data.image}
             />
           </div>
-        </div>
+        </div> */}
+             {data.image ? 
+                <div>
+                  <img src={data.image} />
+                </div>
+                :
+          <>
+            <label className='label'>Please upload a photo</label>
+            <input
+              className="image"
+              type="file"
+              onChange={handleUpload}
+            />
+          </>
+              }
         <div className="field">
           <label className="label">First Line</label>
           <div className="control">

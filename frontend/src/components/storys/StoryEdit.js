@@ -17,10 +17,9 @@ class StoryEdit extends React.Component{
   }
 
   async componentDidMount() {
-    const storyId = this.props.match.param.id
-    console.log(storyId)
+    const storyId = this.props.match.params.id
     try {
-      const res = await axios.put(`http://localhost:8000/storys${storyId}`)
+      const res = await axios.get(`http://localhost:8000/storys/${storyId}`)
       this.setState({ data: res.data })
     } catch (err) {
       console.log(err)
@@ -37,7 +36,7 @@ class StoryEdit extends React.Component{
     e.preventDefault()
     const storyId = this.props.match.params.id
     try {
-      const { data } = await axios.post(`http://localhost:8000/storys${storyId}`, 
+      const { data } = await axios.put(`http://localhost:8000/storys/${storyId}/`, 
         this.state.data, {
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })
@@ -46,6 +45,8 @@ class StoryEdit extends React.Component{
       console.log(err)
     }
   }
+
+  
 
 
 

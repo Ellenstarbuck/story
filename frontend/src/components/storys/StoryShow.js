@@ -6,7 +6,8 @@ import Auth from '../../lib/auth'
 class StoryShow extends React.Component{
   
   state = {
-    story: null
+    story: null, 
+    lines: {}
   }
 
   async componentDidMount() {
@@ -19,6 +20,11 @@ class StoryShow extends React.Component{
     }
   }
 
+  handleChange = ({ target: { name, value } }) => {
+    const lines = { ...this.state.lines, [name]: value }
+    this.setState({ lines })
+  }
+
   handleDelete = async() => {
     const storyId = this.props.match.params.id 
     try {
@@ -29,6 +35,33 @@ class StoryShow extends React.Component{
     } catch (err) {
       console.log(err.response)
     }
+  }
+
+  handleSubmit = async e => {
+    // e.preventDefault()
+    const storyId = this.props.match.params.id 
+    try {
+      console.log()
+      const res = await axios.post(`http://localhost:8000/storys/${storyId}/lines/`,
+        this.state.lines, {
+          headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        }) 
+      this.props.history.push(`/storys/${res.data.id}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  canEdit = () => {
+    const checkLines = this.state.story.lines
+    try {
+      console.log(Auth.getPayLoad().sub, "auth")
+      console.log(checkLines[checkLines.length-1].owner.id, "owner")
+      return Auth.getPayLoad().sub !== checkLines[checkLines.length-1].owner.id
+    } catch(err) {
+      return true
+    }
+
   }
 
   
@@ -61,8 +94,34 @@ class StoryShow extends React.Component{
                 {story.genre}
                 <br />
                 <h4 className="title-is-4">First Line</h4>
-                <p>{story.lineStart}</p>
+                <p>{story.lineStart}{story.lines.map(line => line.line)}</p>
+                <div className="field">
+                {this.canEdit() && 
+                <>
+                  <form onSubmit={this.handleSubmit}>
+                <label className="label">Line</label>
+                <div className="control">
+                  <input 
+                    className="input"
+                    name="line"
+                    required
+                    placeholder="Line"
+                    onChange={this.handleChange}
+                    value={story.line}
+                  />
+                </div>
+                <button type='submit' className="button is-danger">Add a line</button>
+                </form>
+                
+                </>
+                }
+                {!this.canEdit() && 
+                <>
+                <h1>Good job {this.state.story.owner.username}!, wait for the other user to add a line!</h1>
+                </>
+                }
                 <br />
+                </div>
                 {this.isOwner() && 
                 <>
                   <Link to={`/storys/${story.id}/edit`} className="button is-warning">Edit Story</Link>

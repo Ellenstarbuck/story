@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
@@ -40,3 +40,19 @@ class LoginView(APIView):
 
         except User.DoesNotExist:
             raise PermissionDenied({'message': 'Invalid Credentails'})
+
+
+class ProfileView(APIView):
+  
+  def get(self, request, pk):
+    try: 
+        request.data['username'] = request.user.id 
+        print(request.user.id)
+        print(User.objects)
+        user = User.objects.get(pk=pk)
+        if user.owner.id != request.user.id:
+          return Response(status=HTTP_401_UNAUTHORIZED)
+        serialized_users = UserSerializer(user)
+        return Response(serialized_users.data)
+    except User.DoesNotExist:
+      return  Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)        
