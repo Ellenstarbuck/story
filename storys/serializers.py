@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import Story, Line
-from genres.models import Genre
+# from genres.models import Genre
 User = get_user_model()
 
 
@@ -10,11 +10,11 @@ class UserSerializer(serializers.ModelSerializer):
       model = User
       fields = ('id', 'username')
 
-class GenreSerializer(serializers.ModelSerializer): # For now just making a serializer for populated cateogies. This app doesn't have a route for creating categories so this should be all we need
+# class GenreSerializer(serializers.ModelSerializer): # For now just making a serializer for populated cateogies. This app doesn't have a route for creating categories so this should be all we need
 
-    class Meta:
-        model = Genre 
-        fields = '__all__'   
+#     class Meta:
+#         model = Genre 
+#         fields = "__all__"
 
 
 class StorySerializer(serializers.ModelSerializer):
@@ -35,4 +35,4 @@ class PopulatedLineSerializer(LineSerializer):
 class PopulatedStorySerializer(StorySerializer):
     owner = UserSerializer()
     lines = PopulatedLineSerializer(many=True)
-    genre = GenreSerializer(many=True)
+    # genre = GenreSerializer(many=True)

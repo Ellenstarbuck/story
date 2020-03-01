@@ -5,7 +5,7 @@ from rest_framework.status import HTTP_201_CREATED, HTTP_422_UNPROCESSABLE_ENTIT
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Story, Line
 
-from .serializers import StorySerializer, LineSerializer, PopulatedStorySerializer, UserSerializer, GenreSerializer
+from .serializers import StorySerializer, LineSerializer, PopulatedStorySerializer, UserSerializer
 
 # Create your views here.
 

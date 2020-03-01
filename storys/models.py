@@ -9,8 +9,8 @@ class Story(models.Model):
   age_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(8), MaxValueValidator(12)]) 
   image = models.CharField(max_length=200)
   lineStart = models.CharField(max_length=400, default='Your first line')
-  owner = models.ForeignKey(User, related_name='storys', null=True, on_delete=models.CASCADE)
-  genre = models.ManyToManyField('genres.Genre', related_name='storys', blank=True)  
+  owner = models.ForeignKey(User, related_name='storys', on_delete=models.CASCADE)
+  genre = models.CharField(max_length=50, blank=True) 
   
 
   def __str__(self):

@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+//cards on index and show
+.card {
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+}
+.card-content {
+    margin-top: auto;
+}
+
+//homepage image
+.hero-body{
+    background-image: url(../assets/bookhomejpg.jpg);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-size: contain;
+    
+}
