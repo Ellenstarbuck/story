@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_202_ACCEPTED
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
@@ -42,17 +42,29 @@ class LoginView(APIView):
             raise PermissionDenied({'message': 'Invalid Credentails'})
 
 
-class ProfileView(APIView):
-  
-  def get(self, request, pk):
-    try: 
-        request.data['username'] = request.user.id 
-        print(request.user.id)
-        print(User.objects)
-        user = User.objects.get(pk=pk)
-        if user.owner.id != request.user.id:
-          return Response(status=HTTP_401_UNAUTHORIZED)
-        serialized_users = UserSerializer(user)
-        return Response(serialized_users.data)
-    except User.DoesNotExist:
-      return  Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)        
+class ProfileDetailView(APIView):
+  #get a single profile
+          
+    def get(self, request):
+      user = request.user 
+      serializer = UserSerializer(user)
+      return Response(serializer.data)
+
+    #edit a profile
+    def put(self, request):
+        try:
+          user = request.user
+          updated_user = UserSerializer(user, data=request.data)
+          if updated_user.is_valid():
+            updated_user.save()
+            return Response(updated_user.data, status=HTTP_202_ACCEPTED)
+          return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+        except User.DoesNotExist:
+          return Response({'message': 'UNAUTHORIZED'}, status=HTTP_401_UNAUTHORIZED)   
+
+class UsersListView(APIView):
+  #list all profiles
+        def get(self, request):
+          users = User.objects.all()
+          serializer_user = UserSerializer(users, many=True) 
+          return Response(serializer_user.data)        

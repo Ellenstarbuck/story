@@ -1,28 +1,33 @@
 import React from 'react'
 import axios from 'axios'
-
-import auth from '../../lib/auth'
-import StoryCard from '../storys/StoryCard'
+import Auth from '../../lib/auth'
+// import StoryCard from '../storys/StoryCard'
 
 class Profile extends React.Component {
 
   state = {
-    User: []
+    data: {
+      username: '',
+      profile_image: '',
+      bio: '',
+    } 
   }
 
   async componentDidMount() {
     try {
-      const res = await axios.get('/api/profile', {
-        headers: { Authorization: `Bearer ${auth.getToken()}` }
+      const res = await axios.get('http://localhost:8000/profile', {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
-      this.setState({ profile: res.data })
+      console.log('hey')
+      this.setState({ data: res.data })
     } catch (err) {
       console.log(err)
     }
   }
 
   render() {
-    const { profile } = this.state
+    const { data } = this.state
+    console.log(this.state.data)
     return (
       <div className="box" id="profileBox">
         <div className="column is-mobile is-multiline">
@@ -33,7 +38,7 @@ class Profile extends React.Component {
                   <span className="icon is-large">
                     <i className="fas fa-3x fa-map-marked-alt"></i>
                   </span>
-                  <h2 className=" title is-3">&nbsp;{profile.username}&apos;s profile</h2>
+                  <h2 className=" title is-3">&nbsp;{data.username}&apos;s profile</h2>
                   <div>&nbsp;</div>
                   <div>&nbsp;</div>
                   <span className="icon is-large">
@@ -44,45 +49,33 @@ class Profile extends React.Component {
             </div>
             <div className="container">
               <div className="box">
-                <h2 className="is-size-4">Trails {profile.username} has made</h2>
+                <h2 className="is-size-4">{data.profile_image}</h2>
                 <div>&nbsp;</div> 
-                <div className="columns is-mobile is-multiline">
+                {/* <div className="columns is-mobile is-multiline">
                   {profile.createdTrails && profile.createdTrails.length === 0 && 
             <p className="subtitle is-5">You haven&apos;t created any trails yet!</p>}
                   {profile.createdTrails && profile.createdTrails.map(trail => (
                     <TrailCard key={trail._id} {...trail} />
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
             <hr />
             <div className="container">
               <div className="box">
-                <h2 className="is-size-4">Saved Trails</h2>
+                <h2 className="is-size-4">Bio</h2>
+                <h2 className="is-size-4">{data.bio}</h2>
                 <div>&nbsp;</div> 
                 <div className="columns is-mobile is-multiline">
-                  {profile.likedTrails && profile.likedTrails.length === 0 && 
+                  {/* {profile.likedTrails && profile.likedTrails.length === 0 && 
             <p className="subtitle is-5">&nbsp;&nbsp;You have not saved any trails yet!</p>}
                   {profile.likedTrails && profile.likedTrails.map(trail => (
                     <TrailCard key={trail._id} {...trail} />
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </div>
             <hr />
-            <div className="container">
-              <div className="box">
-                <h2 className="is-size-4">Completed Trails</h2>
-                <div>&nbsp;</div> 
-                <div className="columns is-mobile is-multiline">
-                  {profile.completedTrails && profile.completedTrails.length === 0 && 
-            <p className="subtitle is-5">&nbsp;&nbsp;You have not completed any trails yet!</p>}
-                  {profile.completedTrails && profile.completedTrails.map(trail => (
-                    <TrailCard key={trail._id} {...trail} />
-                  ))}
-                </div>
-              </div>
-            </div>
           </section>
         </div>
       </div>

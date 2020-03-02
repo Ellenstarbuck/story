@@ -11,6 +11,7 @@ import StoryEdit from './components/storys/StoryEdit'
 import Register from './auth/Register'
 import Login from './auth/Login'
 import NavBar from './components/common/NavBar'
+import Profile from './components/common/Profile'
 import SecureRoute from './components/common/SecureRoute'
 
 
@@ -26,6 +27,7 @@ const App = () => (
       <Route path='/storys'component={StoryIndex} /> 
       <Route path="/register"component={Register}/>
       <Route path="/login"component={Login}/>
+      <Route path="/profile"component={Profile}/>
       
 
       </Switch>
