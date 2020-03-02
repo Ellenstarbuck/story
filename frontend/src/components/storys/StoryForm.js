@@ -4,25 +4,12 @@ import React from 'react'
 
 
 
-const StoryForm = ({ data, handleChange, handleSubmit, handleUpload }) => {
+const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick, choices }) => {
   
-  
-  // const options = [
-  //   { key: '1', label: 'Funny' }, //label is shown to user
-  //   { key: '2', label: 'Sci-fi' },
-  //   { key: '3', label: 'Spooky' },
-  //   { key: '4', label: 'Internet' },
-  //   { key: '5', label: 'Cute' },
-  //   { key: '6', label: 'Fairy Tales' },
-  //   { key: '7', label: 'Mysery' },
-  //   { key: '8', label: 'Poetry' },
-  //   { key: '9', label: 'Magic' }
-  // ]
 
   return (
     <div className="columns">
       <form onSubmit={handleSubmit} className="column is-half is-offset-one-quarter">
-        <h2 className="title">New Story</h2>
         <div className="field">
           <label className="label">Title</label>
           <div className="control">
@@ -50,19 +37,6 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload }) => {
           </div>
         </div>
         <div className="box">
-        {/* <div className="field">
-          <label className="label">Image</label>
-          <div className="control">
-            <input 
-              className="input"
-              name="image"
-              required
-              placeholder="Image"
-              onChange={handleChange}
-              value={data.image}
-            />
-          </div>
-        </div> */}
              {data.image ? 
                 <div>
                   <img src={data.image} />
@@ -77,6 +51,7 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload }) => {
             />
           </>
               }
+              <p>&nbsp;</p>  
         <div className="field">
           <label className="label">First Line</label>
           <div className="control">
@@ -91,29 +66,25 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload }) => {
           </div>
         </div>
         <div className="field">
-          <label className="label">Genre</label>
-          <div className="control">
-            <input 
-              className="input"
-              name="genre"
-              placeholder="genre"
-              onChange={handleChange}
-              value={data.genre}
-            />
+          <label className="label">Would you like a writing prompt?</label>
+                <button onClick={handleClick} className="button" id="rock">Yes please!</button>
+                <label className="label">Write a line about {choices}</label>
           </div>
-        </div>
-        {/* <div className="field">
-              <label className="label">Genre</label>
-              <div className="control">
-                <Select
-                  value={data.genre}
-                  options={options}
-                  isMulti
-                  onChange={handleMultiChange}
-                />
+          <p>&nbsp;</p> 
+            <div className="field">
+              <label className="label">What kind of story is it?</label>
+              <div className="select">
+                <select name="genre" onChange={handleChange} value={data.genre}>
+                  <option disabled value="">Pick a type</option>
+                  <option value="magic">Magic</option>
+                  <option value="spooky">Spooky</option>
+                  <option value="funny">Funny</option>
+                  <option value="funny">Cute</option>
+                  <option value="funny">Internet</option>
+                  <option value="funny">Space</option>
+                </select>
               </div>
-        </div> */}
-       
+            </div>
         <div className="field">
           <button type="submit" className="button is-fullwidth is-warning">
             Add my story to the collection!

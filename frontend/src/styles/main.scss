@@ -4,9 +4,9 @@
 
 //cards on index and show
 .card {
-  height: 100%;
-  display:flex;
-  flex-direction: column;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
 .card-content {
     margin-top: auto;
@@ -14,9 +14,57 @@
 
 //homepage image
 .hero-body{
-    background-image: url(../assets/bookhomejpg.jpg);
+    background-image: url(../assets/background.png);
     background-repeat: no-repeat;
     min-height: 100vh;
     background-size: contain;
     
+}
+
+.newstorybg {
+  background-image: url(../assets/newstory.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+
+}
+
+.loginbg {
+  background-image: url(../assets/register.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+
+}
+
+.registerbg {
+  background-image: url(../assets/actualreg.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+
+}
+
+.aboutus {
+  background-image: url(../assets/aboutUs.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+
+}
+
+.profilebg {
+  background-image: url(../assets/plainBackground.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+
+}
+
+.storyshowbg {
+  background-image: url(../assets/plainBackground.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+
 }

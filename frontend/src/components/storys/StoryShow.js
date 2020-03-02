@@ -55,8 +55,6 @@ class StoryShow extends React.Component{
   canEdit = () => {
     const checkLines = this.state.story.lines
     try {
-      console.log(Auth.getPayLoad().sub, "auth")
-      console.log(checkLines[checkLines.length-1].owner.id, "owner")
       return Auth.getPayLoad().sub !== checkLines[checkLines.length-1].owner.id
     } catch(err) {
       return true
@@ -73,16 +71,17 @@ class StoryShow extends React.Component{
     const { story } = this.state
     if (!story) return null
     return (
-      <section className="section">
+      
+      <section className="section" >
         <div className="container">
           <div className="colums">
             <div className="displayNice">
-              <div className="column is-one-third">
+              <div className="column is-half is-offset-one-quarter">
                 <figure className="image">
                   <img src={story.image} alt={story.title} />
                 </figure>
               </div>
-              <div className="column is-one-third">
+              <div className="column is-half is-offset-one-quarter">
                 <h2 className="title">{story.title}</h2>
                 <h4 className="title-is-4">Writer</h4>
                 {story.owner.username}

@@ -13,6 +13,8 @@ import Login from './auth/Login'
 import NavBar from './components/common/NavBar'
 import Profile from './components/common/Profile'
 import SecureRoute from './components/common/SecureRoute'
+import About from './components/common/About'
+import ProfileEdit from './components/common/ProfileEdit'
 
 
 const App = () => (
@@ -24,10 +26,12 @@ const App = () => (
       <SecureRoute path="/storys/:id/edit"component={StoryEdit}/>
       <SecureRoute path='/storys/new'component={StoryNew} />
       <Route path='/storys/:id'component={StoryShow} /> 
+      <SecureRoute path='/profile/:id/edit'component={ProfileEdit}/>
       <Route path='/storys'component={StoryIndex} /> 
       <Route path="/register"component={Register}/>
       <Route path="/login"component={Login}/>
-      <Route path="/profile"component={Profile}/>
+      <SecureRoute path="/profile"component={Profile}/>
+      <Route path="/about"component={About}/>
       
 
       </Switch>

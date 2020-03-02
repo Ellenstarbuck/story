@@ -5,6 +5,7 @@ import StoryForm from './StoryForm'
 // import { headers } from '../../lib/headers'
 
 
+
 class StoryNew extends React.Component{
 
   state = {
@@ -15,23 +16,23 @@ class StoryNew extends React.Component{
       lineStart: '',
       genre: '',
       owner: ''
-    } 
+    } ,
+    choices: ''
 
   }
 
-  // options = [
-  //   { value: 'Funny', label: 'Funny' }, //label is shown to user
-  //   { value: 'Sci-fi', label: 'Sci-fi' },
-  //   { value: 'Spooky', label: 'Spooky' },
-  //   { value: 'Internet', label: 'Internet' },
-  //   { value: 'Cute', label: 'Cute' },
-  //   { value: 'Fairy Tales', label: 'Fairy Tales' },
-  //   { value: 'Mystery', label: 'Mysery' },
-  //   { value: 'Poetry', label: 'Poetry' },
-  //   { value: 'Magic', label: 'Magic' }
-  // ]
+  
 
+  choiceArray = ['a spooky boot', 'an alien making dinner', 'your favourite food', 'a giant mouse', 'your favourite singer', 'your favourite film', 'a forgetful otter', 'a unexpected telephone call', 'a scary dream', 'a secret door', 'your best friend', 'a secret loft', 'squirrels taking over the world', 'being a pop star', 'dancing in the rain']
 
+  handleClick = e => {
+    
+    e.preventDefault()
+    const choices = this.choiceArray[Math.floor(Math.random() * this.choiceArray.length)]
+    this.setState({ choices }) 
+
+    
+  }
 
   handleChange = ({ target: { name, value } }) => {
     const data = { ...this.state.data, [name]: value }
@@ -41,7 +42,7 @@ class StoryNew extends React.Component{
   handleSubmit = async e => {
     e.preventDefault()
     try {
-      console.log()
+      console.log(this.state.data)
       const res = await axios.post('http://localhost:8000/storys/',
         this.state.data, {
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -64,31 +65,26 @@ class StoryNew extends React.Component{
     })
   }
 
-  
-
-  // handleMultiChange = (selected) => {
-  //   console.log(selected[0].label)
-  //   const genre = [selected[0].label]
-  //   const data = { ...this.state.data, genre }
-  //   console.log(this.state.data.genre)
-  //   this.setState({ data })
-  // }
-
 
 
   render() {
-  
+    console.log(this.state.choices)
     return (
+      <div className="hero is-fullheight-with-navbar is-primary">
       <section className="section">
+        <div className="newstorybg"> 
         <div className="container">
           <StoryForm data={this.state.data}
+            choices={this.state.choices}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleUpload={this.handleUpload}
-            // handleMultiChange={this.handleMultiChange}
+            handleClick={this.handleClick}
           />
         </div>
+        </div>
       </section>
+      </div>
     )
     
   }

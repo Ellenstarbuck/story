@@ -1,21 +1,26 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
-// import StoryCard from '../storys/StoryCard'
+import StoryCard from '../storys/StoryCard'
+import { Link } from 'react-router-dom'
 
 class Profile extends React.Component {
 
   state = {
     data: {
+      id: '',
       username: '',
       profile_image: '',
       bio: '',
+      storys: []
     } 
   }
 
   async componentDidMount() {
+    const userId = this.state.data.id
+    console.log(userId)
     try {
-      const res = await axios.get('http://localhost:8000/profile', {
+      const res = await axios.get(`http://localhost:8000/profile`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       console.log('hey')
@@ -25,13 +30,17 @@ class Profile extends React.Component {
     }
   }
 
+  
+  
+
   render() {
     const { data } = this.state
-    console.log(this.state.data)
+    console.log(this.state.data.id)
     return (
-      <div className="box" id="profileBox">
+      
+      <div className="box" id="profileBox" className="hero is-fullheight-with-navbar is-primary">
         <div className="column is-mobile is-multiline">
-          <section className="section" id="profileSection">
+          <section className="section" id="profileSection" className='profilebg'>
             <div className="level">
               <div className="level-left">
                 <div className="level-item">
@@ -50,14 +59,6 @@ class Profile extends React.Component {
             <div className="container">
               <div className="box">
                 <h2 className="is-size-4">{data.profile_image}</h2>
-                <div>&nbsp;</div> 
-                {/* <div className="columns is-mobile is-multiline">
-                  {profile.createdTrails && profile.createdTrails.length === 0 && 
-            <p className="subtitle is-5">You haven&apos;t created any trails yet!</p>}
-                  {profile.createdTrails && profile.createdTrails.map(trail => (
-                    <TrailCard key={trail._id} {...trail} />
-                  ))}
-                </div> */}
               </div>
             </div>
             <hr />
@@ -75,7 +76,21 @@ class Profile extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="container">
+              <div className="box">
+                <h2 className="is-size-4">Created Storys</h2>
+                 <div className="columns is-mobile is-multiline">
+                  {data.storys && data.storys.length === 0 && 
+            <p className="subtitle is-5"><Link to="/storys/new">Make a story</Link></p>}
+                {data.storys && data.storys.map(story => (
+                    <StoryCard key={story.id} {...story} />
+                    ))}    
+                </div>
+              </div>
+            </div>
             <hr />
+                <Link to={`/profile/${data.id}/edit`} className="button is-warning">Edit Profile</Link>
+                  <button onClick={this.handleDelete} className="button is-danger">Delete Profile</button>
           </section>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 
-const StoryCard = ({ title, age_rating, image, lineStart, genre, owner, id }) => (
+const StoryCard = ({ title, age_rating, image, lineStart, id }) => (
 
   <div key={id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
     <Link to={`/storys/${id}`}>
@@ -18,8 +18,7 @@ const StoryCard = ({ title, age_rating, image, lineStart, genre, owner, id }) =>
             <hr />
             <h5 className="title is-6">Age-Rating: {age_rating}</h5>
             <h5 className="title is-6">First Line: {lineStart}</h5>
-            <h5 className="title is-6">Genre: {genre}</h5>  
-            <h5 className="title is-6">Story By{owner.username}</h5>
+            <h5 className="title is-6">Click on me if you want to add a line!</h5>  
           </div>
         </div>
       </div>

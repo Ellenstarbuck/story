@@ -29,6 +29,7 @@ class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item"to="/">Storys</Link>
+            <Link className="navbar-item" to="/about">About</Link>
             <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
               <span></span>
               <span></span>

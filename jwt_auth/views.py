@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, EditSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
@@ -42,7 +42,7 @@ class LoginView(APIView):
             raise PermissionDenied({'message': 'Invalid Credentails'})
 
 
-class ProfileDetailView(APIView):
+class ProfileView(APIView):
   #get a single profile
           
     def get(self, request):
@@ -50,21 +50,19 @@ class ProfileDetailView(APIView):
       serializer = UserSerializer(user)
       return Response(serializer.data)
 
-    #edit a profile
-    def put(self, request):
-        try:
-          user = request.user
-          updated_user = UserSerializer(user, data=request.data)
-          if updated_user.is_valid():
-            updated_user.save()
-            return Response(updated_user.data, status=HTTP_202_ACCEPTED)
-          return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
-        except User.DoesNotExist:
-          return Response({'message': 'UNAUTHORIZED'}, status=HTTP_401_UNAUTHORIZED)   
 
-class UsersListView(APIView):
-  #list all profiles
-        def get(self, request):
-          users = User.objects.all()
-          serializer_user = UserSerializer(users, many=True) 
-          return Response(serializer_user.data)        
+class EditProfileDetailView(APIView):
+
+
+    def get(self, request, pk):
+      user = User.objects.get(pk=pk)
+      serializer = UserSerializer(user)
+      return Response(serializer.data)
+
+    def put(self, request, pk):
+      user = User.objects.get(pk=pk)
+      updated_user = EditSerializer(user, data=request.data) #changethisto an edit serialiser
+      if updated_user.is_valid():
+          updated_user.save()
+          return Response(updated_user.data, status=HTTP_202_ACCEPTED)
+      return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)

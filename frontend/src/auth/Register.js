@@ -31,8 +31,6 @@ class Register extends React.Component{
       await axios.post('http://localhost:8000/register', this.state.data)
       this.props.history.push('/login')  
     } catch (err) {
-      console.log('hi')
-      console.log(err.response.data)
       this.setState({ errors: err.response.data.errors })
       
     }
@@ -40,6 +38,8 @@ class Register extends React.Component{
 
   render() {
     return (
+      <div className="hero is-fullheight-with-navbar is-primary">
+        <div className="registerbg">
       <section className="section">
         <section className="container">
           <div className="columns">
@@ -52,7 +52,7 @@ class Register extends React.Component{
                   <input className={`input ${this.state.errors.first_name ? 'is-danger' : ''}`}
                     placeholder="first_name"
                     required
-                    name="first_name"
+                    name="first name"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -121,7 +121,7 @@ class Register extends React.Component{
                 {this.state.errors.password_confirmation && <small className="help is-danger">{this.state.errors.password_confirmation}</small>}
               </div>
               <div className="field">
-                <div className="label">Profile Image</div>
+                <div className="label">Picture of your favourite animal</div>
                 <div className="control">
                   <input className={`input ${this.state.errors.profile_image ? 'is-danger' : ''}`}
                     placeholder="Profile Image"
@@ -147,6 +147,8 @@ class Register extends React.Component{
           </div>
         </section>
       </section>
+      </div>
+      </div>
     )
   }
 }

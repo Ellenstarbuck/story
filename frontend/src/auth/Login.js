@@ -32,10 +32,12 @@ class Login extends React.Component{
 
   render() {
     return (
+      <div className="hero is-fullheight-with-navbar is-primary">
+        <div className="loginbg">
       <section className="section">
         <div className="container">
           <div className="columns">
-            <form onSubmit={this.handleSubmit} className="columns-half is-offset-one-quarter">
+            <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter">
               <h2 className="title">Login</h2>
               <div className="field">
                 <label className="label">Email</label>
@@ -68,6 +70,8 @@ class Login extends React.Component{
           </div>
         </div>
       </section>
+      </div>
+      </div>
     )
   }
 }
