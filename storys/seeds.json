@@ -4,10 +4,10 @@
     "model": "storys.story",
     "pk": 1,
     "fields": {
-      "title": "My Grandad, the Dragon",
+      "title": "Grandad's turned into a dragon!",
       "age_rating":10,
       "image": "https://i.imgur.com/S2CPLIx.jpg",
-      "lineStart": "My Grandad wasn't always a dragon. He used to be a normal Grandad. But then we all went on holiday to Ireland, and that's where we met the good witch of Dublin. ",
+      "lineStart": "My mum said I had to visit my Grandad Joe. I was annoyed, as he can be really boring. But I went to his house because I am the best son. I knocked on the door. There was no answer, but then I heard a growl from inside... ",
       "owner": 1,
       "genre": "Magic"
     }
@@ -31,9 +31,9 @@
       "title": "The Haunted Cake Shop",
       "age_rating": 10,
       "image": "https://i.imgur.com/9nBjlV5.jpg",
-      "lineStart":"Mark was excited about his birthday. His mum said he could have any cake he wanted from 'The Dough Knot', his favourite bakery. But when he went in to pick out the cake, no one was there. Not even the owner Mrs Mingles. And the lights were off.",
+      "lineStart":"Mark was excited about his birthday. His mum said he could have any cake he wanted from his favourite cake shop. But when he went in no one was there. Not even the owner, Mrs Pickles. 'Hello?' he said, timidly. And then ALL the lights went out!",
       "owner": 1,
-      "genre": "Scary"
+      "genre": "Spooky"
     }
   },
   {
@@ -43,9 +43,9 @@
       "title": "Pirates in Space",
       "age_rating": 8,
       "image": "https://i.imgur.com/2IYXJhW.jpg",
-      "lineStart": "Captain Blackbeard put on his spacesuit and stepped outside his spaceship 'The Mary Celestial'",
+      "lineStart": "Captain Blackbeard put on his spacesuit and stepped outside his spaceship, 'The Mary Celestial'. 'Arg!', he said, to no one in particular.",
       "owner": 2,
-      "genre": "Sci-fi"
+      "genre": "Space"
     }
   },
   {
@@ -55,7 +55,7 @@
       "title": "@Lantis: The lost website.",
       "age_rating": 12,
       "image": "https://i.imgur.com/5tFCgrk.jpg",
-      "lineStart":"Ella's parent's didn't have a computer, and she felt left out on school. Especially when they talked about this amazing website called @Lantis. They said it was the best one ever, but wouldn't tell her what was on it. And then one day, it disapeered.",
+      "lineStart":"Ella was in history class. The teacher was talking about an old website called '@Lantis.' Apparently it was the best website EVER. It could make all your dreams come true. But then one day, it disapeered....",
       "owner": 1,
       "genre": "Internet"
     }
@@ -64,12 +64,36 @@
     "model": "storys.story",
     "pk": 6,
     "fields": {
-      "title": "The Pig in the Hat",
+      "title": "The kitten with the silly meow",
       "age_rating": 8,
-      "image": "https://i.imgur.com/XSFgwvJ.jpg",
-      "lineStart": "There was once a pig in a hat, whose best friend was a cat",
+      "image": "https://i.imgur.com/UsKTqRT.jpg",
+      "lineStart": "'Meow!' meowed Shaun. His owner nearly fell over. Shaun was hiding under the sofa again, and even though he was small he had the loudest meow!",
       "owner": 2,
       "genre": "Cute"
+    }
+  },
+  {
+    "model": "storys.story",
+    "pk": 7,
+    "fields": {
+      "title": "Vampire Ninja's from Outer Space",
+      "age_rating": 8,
+      "image": "https://i.imgur.com/vEmGS7o.jpg",
+      "lineStart": "'Hurry up mum,' said Nat to her mum. She was always running late. 'I can't be late for karate, I am going to get my black belt today.'",
+      "owner": 2,
+      "genre": "Spooky"
+    }
+  },
+  {
+    "model": "storys.story",
+    "pk": 8,
+    "fields": {
+      "title": "Professor Smith's exploding bum",
+      "age_rating": 8,
+      "image": "https://i.imgur.com/7WdEdKh.png",
+      "lineStart": "Professor Smith was in his laboratory doing science. He was trying to make a formula that would stop everyone farting forever. He think he'd cracked it.",
+      "owner": 2,
+      "genre": "Funny"
     }
   }
 

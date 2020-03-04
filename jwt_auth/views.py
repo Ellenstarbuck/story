@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_202_ACCEPTED
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
@@ -66,3 +66,8 @@ class EditProfileDetailView(APIView):
           updated_user.save()
           return Response(updated_user.data, status=HTTP_202_ACCEPTED)
       return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+
+    def delete(self, request, pk):
+        user = User.objects.get(pk=pk) 
+        user.delete()
+        return Response(status=HTTP_204_NO_CONTENT)    

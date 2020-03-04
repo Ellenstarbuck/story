@@ -22,7 +22,7 @@ class StoryEdit extends React.Component{
       const res = await axios.get(`http://localhost:8000/storys/${storyId}`)
       this.setState({ data: res.data })
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -42,7 +42,7 @@ class StoryEdit extends React.Component{
         })
       this.props.history.push(`/storys/${data.id}`)
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 

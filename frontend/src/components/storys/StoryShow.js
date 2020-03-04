@@ -16,7 +16,7 @@ class StoryShow extends React.Component{
       const res = await axios.get(`http://localhost:8000/storys/${storyId}`)
       this.setState({ story: res.data })
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -31,9 +31,9 @@ class StoryShow extends React.Component{
       await axios.delete(`http://localhost:8000/storys/${storyId}`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
-      this.props.history.push('/story')
+      this.props.history.push('/storys')
     } catch (err) {
-      console.log(err.response)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -48,7 +48,7 @@ class StoryShow extends React.Component{
         }) 
       this.props.history.push(`/storys/${res.data.id}`)
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -72,54 +72,71 @@ class StoryShow extends React.Component{
     if (!story) return null
     return (
       
-      <section className="section" >
-        <div className="container">
-          <div className="colums">
+        
+          <section className="hero is-primary"> 
+          <section className="section" id="paddingStoryShow" >
+          <div className="cardTitle">
+          <h2 className="title">{story.title}</h2>
+          </div> 
+          </section>
+         
+          <div className="storyShow">
+            <br />
+            
+            <div className="colums">
             <div className="displayNice">
-              <div className="column is-half is-offset-one-quarter">
-                <figure className="image">
+            
+            <div className="column is-one-third">
+                <figure className="image is-5by4" id="imageShow">
                   <img src={story.image} alt={story.title} />
                 </figure>
-              </div>
-              <div className="column is-half is-offset-one-quarter">
-                <h2 className="title">{story.title}</h2>
-                <h4 className="title-is-4">Writer</h4>
-                {story.owner.username}
+                <div className='box'>
+                <h4 className="title-is-4"><strong>Writer: </strong> {story.owner.username}</h4>
+                <h4 className="title-is-4"><strong>Age-rating: </strong>{story.age_rating}</h4>
+                <h4 className="title-is-4"><strong>Type of story:</strong> {story.genre}</h4>
+                </div>
+                </div>
+                <div className="column is-one-third">
+                <h4 className="title-is-4"><strong>The Story Begins...</strong></h4>
                 <br />
-                <h4 className="title-is-4">Age-rating</h4>
-                <p>{story.age_rating}</p>
-                <br />
-                <h4 className="title-is-4">Genre</h4>
-                {story.genre}
-                <br />
-                <h4 className="title-is-4">First Line</h4>
-                <p>{story.lineStart}{story.lines.map(line => line.line)}</p>
+                <p><strong>{story.lineStart}
+                {story.lines.map(line => {
+                  return <>&nbsp;{line.line}</> 
+                })}</strong></p>
+                 <br />
                 <div className="field">
                 {this.canEdit() && 
                 <>
                   <form onSubmit={this.handleSubmit}>
-                <label className="label">Line</label>
                 <div className="control">
                   <input 
                     className="input"
                     name="line"
                     required
-                    placeholder="Line"
+                    placeholder="What happens next?"
                     onChange={this.handleChange}
                     value={story.line}
                   />
                 </div>
+                <br />
                 <button type='submit' className="button is-danger">Add a line</button>
                 </form>
-                
                 </>
                 }
                 {!this.canEdit() && 
                 <>
-                <h1>Good job {this.state.story.owner.username}!, wait for the other user to add a line!</h1>
+                 <br />
+                 <article class="message is-danger">
+                <div class="message-header">
+                  <p>Good job {this.state.story.owner.username}!</p>
+                  <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="http://localhost:3000/storys">more stories</a></strong> 
+                </div>
+                </article>
                 </>
                 }
-                <br />
                 </div>
                 {this.isOwner() && 
                 <>
@@ -130,11 +147,13 @@ class StoryShow extends React.Component{
                 }
     
               </div>
-            </div>
+            
           <div/>
         </div>
       </div>
-    </section>
+      </div>
+      </section>
+    
     )
   }
 }

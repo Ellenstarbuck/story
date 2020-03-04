@@ -11,7 +11,6 @@ class Register extends React.Component{
       email: '',
       password: '',
       password_confirmation: '',
-      profile_image: '',
       bio: '',
       first_name: '',
       last_name: ''
@@ -22,6 +21,7 @@ class Register extends React.Component{
 
   handleChange = e => {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
+    console.log(this.state.data)
     this.setState({ data })
   }
 
@@ -31,6 +31,7 @@ class Register extends React.Component{
       await axios.post('http://localhost:8000/register', this.state.data)
       this.props.history.push('/login')  
     } catch (err) {
+      console.log(this.state.errors)
       this.setState({ errors: err.response.data.errors })
       
     }
@@ -52,7 +53,7 @@ class Register extends React.Component{
                   <input className={`input ${this.state.errors.first_name ? 'is-danger' : ''}`}
                     placeholder="first_name"
                     required
-                    name="first name"
+                    name="first_name"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -120,7 +121,7 @@ class Register extends React.Component{
                 </div>
                 {this.state.errors.password_confirmation && <small className="help is-danger">{this.state.errors.password_confirmation}</small>}
               </div>
-              <div className="field">
+              {/* <div className="field">
                 <div className="label">Picture of your favourite animal</div>
                 <div className="control">
                   <input className={`input ${this.state.errors.profile_image ? 'is-danger' : ''}`}
@@ -130,7 +131,7 @@ class Register extends React.Component{
                   />    
                 </div>
                 {this.state.errors.profile_image && <small className="help is-danger">{this.state.errors.profile_image}</small>}
-              </div>
+              </div> */}
               <div className="field">
                 <div className="label">About Me</div>
                 <div className="control">

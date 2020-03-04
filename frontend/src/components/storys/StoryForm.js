@@ -68,6 +68,7 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick
         <div className="field">
           <label className="label">Would you like a writing prompt?</label>
                 <button onClick={handleClick} className="button" id="rock">Yes please!</button>
+                <p>&nbsp;</p> 
                 <label className="label">Write a line about {choices}</label>
           </div>
           <p>&nbsp;</p> 

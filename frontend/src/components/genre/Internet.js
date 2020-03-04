@@ -1,23 +1,33 @@
 import React from 'react'
 import axios from 'axios'
-import StoryCard from './StoryCard'
+import StoryCard from '../storys/StoryCard'
 
-class StoryIndex extends React.Component {
-  state = {
+
+class Internet extends React.Component {
+
+  state = { 
     storys: []
   }
 
+
   async componentDidMount() {
     try {
-      const res = await axios.get('http://localhost:8000/storys')
-      this.setState({ storys: res.data }) 
-    } catch(err) {
-      this.props.history.push('/notfound')
-    }
+      const res = await axios.get('http://localhost:8000/storys') 
+      console.log(res.data)
+      const filteredRes = res.data.filter(story => {
+        if (story.genre === 'Internet') {
+          return story
+        }
+      })
+      this.setState({ storys: filteredRes }) 
+    } catch (err) {
+      console.log(err)
+    } 
   }
+  
 
   render() {
-    return(
+    return (
       <>
       <div className="box" id="storyShowBox">
 
@@ -33,11 +43,10 @@ class StoryIndex extends React.Component {
       </div>
       </>
     )
-
     
   }
+
+
 }
 
-
-
-export default StoryIndex
+export default Internet

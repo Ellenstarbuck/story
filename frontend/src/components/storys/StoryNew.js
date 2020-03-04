@@ -50,7 +50,7 @@ class StoryNew extends React.Component{
         
       this.props.history.push(`/storys/${res.data.id}`)
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 

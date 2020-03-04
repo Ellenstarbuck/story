@@ -2,15 +2,40 @@
   box-sizing: border-box;
 }
 
+//error page
+#errorImage {
+  background-image: url(../assets/errorpage.png);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: contain;
+}
+
 //cards on index and show
-.card {
+#storyCard {
     background-size: cover;
     height: 100%;
     width: 100%;
+
+
 }
 .card-content {
     margin-top: auto;
 }
+
+.indexHide{
+  display: none
+}
+
+#storyCard:hover {
+  transform: scale(1.1);
+}
+
+#imageShow {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
 
 //homepage image
 .hero-body{
@@ -19,6 +44,9 @@
     min-height: 100vh;
     background-size: contain;
     
+}
+.hero.is-primary .title{
+  color: black;
 }
 
 .newstorybg {
@@ -53,18 +81,72 @@
 
 }
 
+.storyIndex {
+  background-image: url(../assets/plainBackground.png);
+  min-height: 100vh;
+  background-size: contain;
+
+}
+
+#paddingStoryShow {
+  padding: 20px;
+
+}
+
+#storyShowBox {
+  background-color: #36D1B2;
+  margin: 0px;
+}
+
+
+h1, h2, p, h4 {
+  color: black;
+}
+
+#titleFont {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 30px;
+}
+p, h1, h2, h5 {
+  font-family: 'Spartan', sans-serif;
+}
+
+.label {
+  font-family: 'Spartan', sans-serif;
+}
+
+.button {
+  font-family: 'Spartan', sans-serif;
+}
+
 .profilebg {
-  background-image: url(../assets/plainBackground.png);
+  background-image: url(../assets/profilebg.png);
   background-repeat: no-repeat;
   min-height: 100vh;
   background-size: contain;
 
 }
 
-.storyshowbg {
-  background-image: url(../assets/plainBackground.png);
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  background-size: contain;
 
+#aboutBox {
+  opacity: 0.5;
+  height: 200px;
+  width: 150px;
 }
+
+.displayNice{
+  display:flex;
+  justify-content: center;
+  background-color: white;
+}
+.cardTitle {
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 840px) {
+  .column {
+    width: 100%;
+  }
+}
+
