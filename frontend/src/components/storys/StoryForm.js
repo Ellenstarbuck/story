@@ -43,7 +43,7 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick
                 </div>
                 :
           <>
-            <label className='label'>Please upload a photo</label>
+            <label className='label'>Please upload a photo for your story</label>
             <input
               className="image"
               type="file"

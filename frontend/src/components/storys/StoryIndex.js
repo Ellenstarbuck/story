@@ -19,16 +19,13 @@ class StoryIndex extends React.Component {
   render() {
     return(
       <>
-      <div className="box" id="storyShowBox">
-
-      </div>
       <div className="storyIndex">
       <section className="section">
         <div className="container is-primary">
           <div className="columns is-mobile is-multiline">
             {this.state.storys.map(story => <StoryCard key={story.id} {...story}/>)}
           </div>
-        </div>
+          </div>
       </section>
       </div>
       </>

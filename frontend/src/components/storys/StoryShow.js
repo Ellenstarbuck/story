@@ -56,6 +56,7 @@ class StoryShow extends React.Component{
     const checkLines = this.state.story.lines
     try {
       return Auth.getPayLoad().sub !== checkLines[checkLines.length-1].owner.id
+      
     } catch(err) {
       return true
     }
@@ -64,6 +65,8 @@ class StoryShow extends React.Component{
 
   
   isOwner = () => {
+    console.log(this.state.story.owner.id)
+    console.log(Auth.getPayLoad().sub )
     return Auth.getPayLoad().sub === this.state.story.owner.id
   }
 
@@ -105,7 +108,7 @@ class StoryShow extends React.Component{
                 })}</strong></p>
                  <br />
                 <div className="field">
-                {this.canEdit() && 
+                {this.canEdit() && !this.isOwner() &&
                 <>
                   <form onSubmit={this.handleSubmit}>
                 <div className="control">
@@ -126,22 +129,36 @@ class StoryShow extends React.Component{
                 {!this.canEdit() && 
                 <>
                  <br />
-                 <article class="message is-danger">
-                <div class="message-header">
-                  <p>Good job {this.state.story.owner.username}!</p>
-                  <button class="delete" aria-label="delete"></button>
+                 <article className="message is-danger">
+                <div className="message-header">
+                  <p>Good job {this.state.story.lines[0].owner.username}!</p>
+                  <button className="delete" aria-label="delete"></button>
                 </div>
-                <div class="message-body">
+                <div className="message-body">
                   <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="http://localhost:3000/storys">more stories</a></strong> 
                 </div>
                 </article>
                 </>
                 }
                 </div>
+                {this.canEdit() && this.isOwner() &&
+                <>
+                 <br />
+                 <article className="message is-danger">
+                <div className="message-header">
+                  <p>Good job {this.state.story.owner.username}!</p>
+                  <button className="delete" aria-label="delete"></button>
+                </div>
+                <div className="message-body">
+                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="http://localhost:3000/storys">more stories</a></strong> 
+                </div>
+                </article>
+                </>
+                }
+                
                 {this.isOwner() && 
                 <>
                   <Link to={`/storys/${story.id}/edit`} className="button is-warning">Edit Story</Link>
-                  <hr />
                   <button onClick={this.handleDelete} className="button is-danger">Delete Story</button>
                 </>
                 }

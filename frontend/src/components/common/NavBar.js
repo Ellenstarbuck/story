@@ -29,7 +29,7 @@ class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item"to="/">Home</Link>
-            <Link className="navbar-item" to="/about">About</Link>
+            <Link className="navbar-item" to="/about">How does this work?</Link>
             <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
               <span></span>
               <span></span>
@@ -39,8 +39,7 @@ class Navbar extends React.Component {
           <div className={`navbar-menu ${navbarOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
               <Link className="navbar-item"to="/storys">The Storys</Link>
-              <Link className="navbar-item"to="/storysmaker">Story Maker</Link>
-               <nav className="navbar is-danger" role="navigation" aria-label="dropdown navigation"> 
+                <nav className="navbar is-danger" role="navigation" aria-label="dropdown navigation"> 
                 <div className="navbar-item has-dropdown is-hoverable">
                   <div className="navbar-link">Types of Storys</div>
                   <div className="navbar-dropdown">

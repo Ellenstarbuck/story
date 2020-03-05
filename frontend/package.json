@@ -14,11 +14,13 @@
     "js-cookie": "^2.2.1",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
+    "react-collapsible": "^2.7.0",
     "react-dom": "^16.13.0",
     "react-notify-toast": "^0.5.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "react-select": "^3.0.8"
+    "react-select": "^3.0.8",
+    "reactjs-popup": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -30,9 +30,6 @@ class Magic extends React.Component {
     console.log('i am returning...', this.state.storys)
     return (
       <>
-      <div className="box" id="storyShowBox">
-
-      </div>
       <div className="storyIndex">
       <section className="section">
         <div className="container is-primary">

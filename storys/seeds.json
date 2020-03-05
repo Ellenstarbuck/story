@@ -28,7 +28,7 @@
     "model": "storys.story",
     "pk": 3,
     "fields": {
-      "title": "The Haunted Cake Shop",
+      "title": "Mrs Pickles Haunted Cake Shop",
       "age_rating": 10,
       "image": "https://i.imgur.com/9nBjlV5.jpg",
       "lineStart":"Mark was excited about his birthday. His mum said he could have any cake he wanted from his favourite cake shop. But when he went in no one was there. Not even the owner, Mrs Pickles. 'Hello?' he said, timidly. And then ALL the lights went out!",
@@ -40,7 +40,7 @@
     "model": "storys.story",
     "pk": 4,
     "fields": {
-      "title": "Pirates in Space",
+      "title": "Pirates on a space adventure",
       "age_rating": 8,
       "image": "https://i.imgur.com/2IYXJhW.jpg",
       "lineStart": "Captain Blackbeard put on his spacesuit and stepped outside his spaceship, 'The Mary Celestial'. 'Arg!', he said, to no one in particular.",

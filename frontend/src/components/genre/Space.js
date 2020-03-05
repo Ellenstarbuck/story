@@ -29,9 +29,6 @@ class Space extends React.Component {
   render() {
     return (
       <>
-      <div className="box" id="storyShowBox">
-
-      </div>
       <div className="storyIndex">
       <section className="section">
         <div className="container is-primary">

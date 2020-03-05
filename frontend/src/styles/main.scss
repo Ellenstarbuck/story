@@ -16,8 +16,25 @@
     height: 100%;
     width: 100%;
 
+}
+
+#storycardImage {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
 
 }
+
+.genrebackground {
+  background-image: url(../assets/background.jpg);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: cover;
+
+}
+
+
+
 .card-content {
     margin-top: auto;
 }
@@ -82,9 +99,10 @@
 }
 
 .storyIndex {
-  background-image: url(../assets/plainBackground.png);
+  background-image: url(../assets/background.jpg);
   min-height: 100vh;
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 
 }
 
@@ -98,8 +116,28 @@
   margin: 0px;
 }
 
+#storybox {
+  margin: 0px;
+  background-color: #36D1B2;
+  margin-left: 120px;
+}
 
-h1, h2, p, h4 {
+#generatorBox {
+  width: 500px;
+  background-color: #36D1B2;
+}
+
+#boxBackground {
+  background-color: #36D1B2;
+}
+
+
+
+h1, h2, p, h4, #linkFont {
+  color: black;
+}
+
+#root > main > div > div > section > div > div > div > div:nth-child(7) > div > div > p > a {
   color: black;
 }
 
@@ -107,7 +145,7 @@ h1, h2, p, h4 {
   font-family: 'Nanum Pen Script', cursive;
   font-size: 30px;
 }
-p, h1, h2, h5 {
+p, h1, h2, h4, h5, #triggerFont {
   font-family: 'Spartan', sans-serif;
 }
 
@@ -117,6 +155,7 @@ p, h1, h2, h5 {
 
 .button {
   font-family: 'Spartan', sans-serif;
+  margin: 10px;
 }
 
 .profilebg {
@@ -129,10 +168,14 @@ p, h1, h2, h5 {
 
 
 #aboutBox {
-  opacity: 0.5;
-  height: 200px;
-  width: 150px;
+  opacity: 0.9;
+  height: 420px;
+  width: 500px;
+  padding: 10px;
 }
+
+
+
 
 .displayNice{
   display:flex;

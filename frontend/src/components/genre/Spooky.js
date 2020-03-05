@@ -30,9 +30,11 @@ class Spooky extends React.Component {
     return (
       <>
       <div className="box" id="storyShowBox">
+       
 
       </div>
       <div className="storyIndex">
+      <div className="genrebackground">
       <section className="section">
         <div className="container is-primary">
           <div className="columns is-mobile is-multiline">
@@ -40,6 +42,7 @@ class Spooky extends React.Component {
           </div>
         </div>
       </section>
+      </div>
       </div>
       </>
     )

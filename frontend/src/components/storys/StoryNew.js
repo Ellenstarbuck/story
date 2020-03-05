@@ -23,7 +23,7 @@ class StoryNew extends React.Component{
 
   
 
-  choiceArray = ['a spooky boot', 'an alien making dinner', 'your favourite food', 'a giant mouse', 'your favourite singer', 'your favourite film', 'a forgetful otter', 'a unexpected telephone call', 'a scary dream', 'a secret door', 'your best friend', 'a secret loft', 'squirrels taking over the world', 'being a pop star', 'dancing in the rain']
+  choiceArray = ['a spooky boot', 'an alien making dinner', 'your favourite food', 'a giant mouse', 'your favourite singer', 'your favourite film', 'a forgetful otter', 'a unexpected telephone call', 'a scary dream', 'a secret door', 'your best friend', 'a secret loft', 'squirrels taking over the world', 'being a pop star', 'dancing in the rain', 'a secret', 'a funny memory', 'the best cheese', 'a noisy thunderstorm', 'monsters under the bed']
 
   handleClick = e => {
     

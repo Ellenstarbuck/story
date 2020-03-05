@@ -3,12 +3,15 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 import StoryCard from '../storys/StoryCard'
 import { Link } from 'react-router-dom'
+import Collapsible from 'react-collapsible'
 
 class Profile extends React.Component {
 
   state = {
     data: {
       id: '',
+      first_name: '',
+      last_name:'',    
       username: '',
       bio: '',
       storys: []
@@ -53,34 +56,34 @@ class Profile extends React.Component {
       <div className="container">
         <div className="columns">
         <div className="column is-half is-offset-one-quarter">
-                  <h2 className=" title is-3">&nbsp;{data.username}&apos;s profile</h2>
+                  <h2 className="title is-3">&nbsp;{data.username}&apos;s profile</h2>
             <hr />
             <div className="container">
               <div className="box">
-                <h2 className="is-size-4">Bio</h2>
-                <h2 className="is-size-4">{data.bio}</h2>
+                <h2 className="is-size-4"><strong>A bit about you</strong></h2>
+                <h2 className="is-size-5">My name is {data.first_name}&nbsp;{data.last_name} and {data.bio}</h2>
                 <div>&nbsp;</div> 
               </div>
             </div>
             <hr />
             <div className="container">
               <div className="box">
-                <h2 className="is-size-4">Created Storys</h2>
-                <div>&nbsp;</div> 
-                </div>
-              </div>
-              <hr />
-                <div className="container">
-              <div className="box">
-                 <div className="columns is-mobile is-multiline">
+            
+                
+                <h2 className="is-size-4"><strong>Created Storys</strong></h2> 
+
+                <div className="box" id="boxBackground">
                   {data.storys && data.storys.length === 0 && 
-            <p className="subtitle is-5"><Link to="/storys/new">Make a story</Link></p>}
+            <p className="subtitle is-5" id='linkFont'><Link to="/storys/new">Make a story</Link></p>}
+                  </div>
                 {data.storys && data.storys.map(story => (
                     <StoryCard key={story.id} {...story} />
-                    ))}    
+                    ))}  
+                      
+                    
                 </div>
-              </div>
             </div>
+              
             <hr />
                 <Link to={`/profile/${data.id}/edit`} className="button is-warning">Edit Profile</Link>
                   <button onClick={this.handleDelete} className="button is-danger">Delete Profile</button>

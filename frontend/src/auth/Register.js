@@ -46,9 +46,9 @@ class Register extends React.Component{
           <div className="columns">
             <form onSubmit={this.handleSubmit} 
               className="column is-half is-offset-one-quarter">
-              <h2 className="title has-text-centered">Register</h2>
+              <h2 className="title has-text-centered"><strong>Register</strong></h2>
               <div className="field">
-                <div className="label">First Name</div>
+                <div className="label"><strong>First Name</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.first_name ? 'is-danger' : ''}`}
                     placeholder="first_name"
@@ -60,7 +60,7 @@ class Register extends React.Component{
                 {this.state.errors.first_name && <small className="help is-danger">{this.state.errors.first_name}</small>}
               </div>
               <div className="field">
-                <div className="label">Last Name</div>
+                <div className="label"><strong>Last Name</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.last_name ? 'is-danger' : ''}`}
                     placeholder="Last Name"
@@ -72,7 +72,7 @@ class Register extends React.Component{
                 {this.state.errors.last_name && <small className="help is-danger">{this.state.errors.last_name}</small>}
               </div>
               <div className="field">
-                <div className="label">Username</div>
+                <div className="label"><strong>Username</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Username"
@@ -84,7 +84,7 @@ class Register extends React.Component{
                 {this.state.errors.username && <small className="help is-danger">{this.state.errors.username}</small>}
               </div>
               <div className="field">
-                <div className="label">Email</div>
+                <div className="label"><strong>Email</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.email ? 'is-danger' : ''}`}
                     placeholder="Email"
@@ -96,7 +96,7 @@ class Register extends React.Component{
                 {this.state.errors.email && <small className="help is-danger">{this.state.errors.email}</small>}
               </div>
               <div className="field">
-                <div className="label">Password</div>
+                <div className="label"><strong>Password</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.password ? 'is-danger' : ''}`}
                     placeholder="Password"
@@ -109,7 +109,7 @@ class Register extends React.Component{
                 {this.state.errors.password && <small className="help is-danger">{this.state.errors.password}</small>}
               </div>
               <div className="field">
-                <div className="label">Password Confirmation</div>
+                <div className="label"><strong>Password Confirmation</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.password_confirmation ? 'is-danger' : ''}`}
                     placeholder="Password Confirmation"
@@ -133,7 +133,7 @@ class Register extends React.Component{
                 {this.state.errors.profile_image && <small className="help is-danger">{this.state.errors.profile_image}</small>}
               </div> */}
               <div className="field">
-                <div className="label">About Me</div>
+                <div className="label"><strong>About Me</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.bio ? 'is-danger' : ''}`}
                     placeholder="A bit about me"

@@ -22,7 +22,6 @@ import SecureRoute from './components/common/SecureRoute'
 import About from './components/common/About'
 import ProfileEdit from './components/common/ProfileEdit'
 import ErrorPage from './components/common/ErrorPage'
-import StoryMaker from './components/storys/StoryMaker'
 
 
 const App = () => (
@@ -36,7 +35,6 @@ const App = () => (
       <Route path='/storys/:id'component={StoryShow} /> 
       <SecureRoute path='/profile/:id/edit'component={ProfileEdit}/>
       <Route path='/storys'component={StoryIndex} />
-      <Route path='/storysmaker'component={StoryMaker} />
       <Route path='/magic'component={Magic} />
       <Route path='/cute'component={Cute} />
       <Route path='/funny'component={Funny} />
