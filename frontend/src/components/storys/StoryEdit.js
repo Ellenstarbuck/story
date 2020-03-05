@@ -19,7 +19,7 @@ class StoryEdit extends React.Component{
   async componentDidMount() {
     const storyId = this.props.match.params.id
     try {
-      const res = await axios.get(`http://localhost:8000/storys/${storyId}`)
+      const res = await axios.get(`/api/storys/${storyId}`)
       this.setState({ data: res.data })
     } catch (err) {
       this.props.history.push('/notfound')
@@ -36,7 +36,7 @@ class StoryEdit extends React.Component{
     e.preventDefault()
     const storyId = this.props.match.params.id
     try {
-      const { data } = await axios.put(`http://localhost:8000/storys/${storyId}/`, 
+      const { data } = await axios.put(`/api/storys/${storyId}/`, 
         this.state.data, {
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })

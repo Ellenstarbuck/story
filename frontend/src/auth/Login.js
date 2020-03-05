@@ -22,7 +22,7 @@ class Login extends React.Component{
     e.preventDefault()
 
     try {
-      const res = await axios.post('http://localhost:8000/login', this.state.data)
+      const res = await axios.post('/api/login', this.state.data)
       Auth.setToken(res.data.token)
       this.props.history.push('/storys')
     }  catch (err) {

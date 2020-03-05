@@ -43,7 +43,7 @@ class StoryNew extends React.Component{
     e.preventDefault()
     try {
       console.log(this.state.data)
-      const res = await axios.post('http://localhost:8000/storys/',
+      const res = await axios.post('/api/storys/',
         this.state.data, {
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
         }) 

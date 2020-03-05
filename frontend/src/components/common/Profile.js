@@ -22,7 +22,7 @@ class Profile extends React.Component {
     const userId = this.state.data.id
     console.log(userId)
     try {
-      const res = await axios.get(`http://localhost:8000/profile`, {
+      const res = await axios.get(`/api/profile`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       console.log('hey')
@@ -35,7 +35,7 @@ class Profile extends React.Component {
   handleDelete = async() => {
     const userId = this.state.data.id
     try {
-      await axios.delete(`http://localhost:8000/profile/${userId}/`, {
+      await axios.delete(`/api/profile/${userId}/`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       this.props.history.push('/storys')

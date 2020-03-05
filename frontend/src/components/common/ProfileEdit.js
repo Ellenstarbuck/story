@@ -18,7 +18,7 @@ class ProfileEdit extends React.Component {
     const profileId = this.props.match.params.id
     
     try {
-      const res = await axios.get(`http://localhost:8000/profile/${profileId}/`)
+      const res = await axios.get(`/api/profile/${profileId}/`)
       this.setState({ data: res.data })
       console.log(res.data)
     } catch (err) {
@@ -36,7 +36,7 @@ class ProfileEdit extends React.Component {
   e.preventDefault()
   const userId = this.state.data.id
   try {
-      await axios.put(`http://localhost:8000/profile/${userId}/`,
+      await axios.put(`/api/profile/${userId}/`,
       this.state.data, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       }) 

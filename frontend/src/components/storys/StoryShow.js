@@ -13,7 +13,7 @@ class StoryShow extends React.Component{
   async componentDidMount() {
     const storyId = this.props.match.params.id
     try {
-      const res = await axios.get(`http://localhost:8000/storys/${storyId}`)
+      const res = await axios.get(`/api/storys/${storyId}`)
       this.setState({ story: res.data })
     } catch (err) {
       this.props.history.push('/notfound')
@@ -28,7 +28,7 @@ class StoryShow extends React.Component{
   handleDelete = async() => {
     const storyId = this.props.match.params.id 
     try {
-      await axios.delete(`http://localhost:8000/storys/${storyId}`, {
+      await axios.delete(`/api/storys/${storyId}`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       this.props.history.push('/storys')
@@ -42,7 +42,7 @@ class StoryShow extends React.Component{
     const storyId = this.props.match.params.id 
     try {
       console.log()
-      const res = await axios.post(`http://localhost:8000/storys/${storyId}/lines/`,
+      const res = await axios.post(`/api/storys/${storyId}/lines/`,
         this.state.lines, {
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
         }) 
@@ -135,7 +135,7 @@ class StoryShow extends React.Component{
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">
-                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="http://localhost:3000/storys">more stories</a></strong> 
+                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/api/storys">more stories</a></strong> 
                 </div>
                 </article>
                 </>
@@ -150,7 +150,7 @@ class StoryShow extends React.Component{
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">
-                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="http://localhost:3000/storys">more stories</a></strong> 
+                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/api/storys">more stories</a></strong> 
                 </div>
                 </article>
                 </>

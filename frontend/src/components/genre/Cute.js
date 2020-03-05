@@ -12,7 +12,7 @@ class Cute extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get('http://localhost:8000/storys') 
+      const res = await axios.get('/api/storys') 
       console.log(res.data)
       const filteredRes = res.data.filter(story => {
         if (story.genre === 'Cute') {
