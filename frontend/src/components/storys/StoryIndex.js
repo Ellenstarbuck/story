@@ -9,7 +9,7 @@ class StoryIndex extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get('/api/storys')
+      const res = await axios.get('/api/storys/')
       this.setState({ storys: res.data }) 
     } catch(err) {
       this.props.history.push('/notfound')
@@ -17,6 +17,7 @@ class StoryIndex extends React.Component {
   }
 
   render() {
+    if (!this.state.storys.length) return null
     return(
       <>
       <div className="storyIndex">

@@ -135,7 +135,7 @@ class StoryShow extends React.Component{
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">
-                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/api/storys">more stories</a></strong> 
+                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/storys">more stories</a></strong> 
                 </div>
                 </article>
                 </>
@@ -150,7 +150,7 @@ class StoryShow extends React.Component{
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">
-                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/api/storys">more stories</a></strong> 
+                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/storys">more stories</a></strong> 
                 </div>
                 </article>
                 </>
