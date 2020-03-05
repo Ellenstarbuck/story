@@ -12,4 +12,4 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 
 
-// app.use('/api', router)
+app.use('/api', router)
