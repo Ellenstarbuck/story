@@ -6,7 +6,7 @@ User = get_user_model()
 # Create your models here.
 class Story(models.Model): 
   title = models.CharField(max_length=50)
-  age_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(8), MaxValueValidator(12)]) 
+  age_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(6), MaxValueValidator(12)]) 
   image = models.CharField(max_length=200)
   lineStart = models.CharField(max_length=400, default='Your first line')
   owner = models.ForeignKey(User, related_name='storys', on_delete=models.CASCADE)
