@@ -23,19 +23,36 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick
             />
           </div>
         </div>
-        <div className="field">
+        {/* <div className="field">
           <label className="label">Age Rating</label>
           <div className="control">
             <input 
               className="input"
               name="age_rating"
               required
-              placeholder="Age Rating"
+              placeholder="Enter a number between 7 and 12"
               onChange={handleChange}
               value={data.age_rating}
             />
           </div>
-        </div>
+        </div> */}
+        <label className="label">Age Rating</label>
+              <div className="d_form">
+                <div className="control">
+                  <input 
+                    className="input"
+                    placeholder="Enter a number between 8 - 12"
+                    type="number" 
+                    max="12"
+                    value={data.age_rating}
+                    required
+                    min="8"
+                    name="age_rating"
+                    onChange={handleChange}
+                  ></input>
+                </div>
+              </div>  
+              <p>&nbsp;</p>  
         <div className="box">
              {data.image ? 
                 <div>
@@ -53,7 +70,13 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick
               }
               <p>&nbsp;</p>  
         <div className="field">
-          <label className="label">First Line</label>
+          <label className="label">Write your first line</label>
+          <div className="field">
+          <label className="label">Would you like a writing prompt?</label>
+                <button onClick={handleClick} className="button" id="rock">Yes please!</button>
+                <p>&nbsp;</p> 
+                <label className="label">Write a line about {choices}</label>
+          </div>
           <div className="control">
             <input 
               className="input"
@@ -65,12 +88,6 @@ const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick
             />
           </div>
         </div>
-        <div className="field">
-          <label className="label">Would you like a writing prompt?</label>
-                <button onClick={handleClick} className="button" id="rock">Yes please!</button>
-                <p>&nbsp;</p> 
-                <label className="label">Write a line about {choices}</label>
-          </div>
           <p>&nbsp;</p> 
             <div className="field">
               <label className="label">What kind of story is it?</label>
