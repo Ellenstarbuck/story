@@ -75,9 +75,10 @@ class Profile extends React.Component {
                 <div className="box" id="boxBackground">
                   {data.storys && data.storys.length === 0 && 
             <p className="subtitle is-5" id='linkFont'><Link to="/storys/new">Make a story</Link></p>}
-                  </div>
                 {data.storys && data.storys.map(story => (
+                  <div className="box">
                     <StoryCard key={story.id} {...story} />
+                  </div>  
                     ))}  
                       
                     

@@ -15,7 +15,7 @@ const StoryCard = ({ title, age_rating, image, lineStart, id }) => (
               src={image} alt={title}/></figure>
           </div>
           <div>&nbsp;</div> 
-            <h5 className="title is-6">For ages <strong>{age_rating} and above</strong></h5>
+            <h5 className="title is-6" className="inspirationFont">For ages <strong>{age_rating} and above</strong></h5>
             <div className="indexHide">
             <h5 className="title is-6">First Line: <strong>{lineStart}</strong></h5> 
           </div>

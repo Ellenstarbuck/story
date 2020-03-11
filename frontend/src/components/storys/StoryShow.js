@@ -52,23 +52,25 @@ class StoryShow extends React.Component{
     }
   }
 
+  //check if the person who wrote the story is different to the person who is logged int
   canEdit = () => {
     const checkLines = this.state.story.lines
     try {
       return Auth.getPayLoad().sub !== checkLines[checkLines.length-1].owner.id
-      
     } catch(err) {
       return true
     }
 
   }
 
-  
+  //checks if the person who wrote the story is the same as the person who is logged in
   isOwner = () => {
     console.log(this.state.story.owner.id)
     console.log(Auth.getPayLoad().sub )
     return Auth.getPayLoad().sub === this.state.story.owner.id
   }
+
+  
 
   render() {
     const { story } = this.state
@@ -108,7 +110,7 @@ class StoryShow extends React.Component{
                 })}</strong></p>
                  <br />
                 <div className="field">
-                {this.canEdit() && !this.isOwner() &&
+                {this.canEdit() && !this.isOwner() && Auth.isAuthenticated() &&
                 <>
                   <form onSubmit={this.handleSubmit}>
                 <div className="control">
@@ -155,6 +157,11 @@ class StoryShow extends React.Component{
                 </article>
                 </>
                 }
+
+                {!Auth.isAuthenticated() && 
+                  <div className="message-header">
+                  <p>Please log in to add a line to the story</p>
+                </div>}
                 
                 {this.isOwner() && 
                 <>
