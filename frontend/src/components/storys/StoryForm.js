@@ -1,9 +1,9 @@
 import React from 'react'
-// import Select from 'react-select'
 
 
 
 
+//passing the props down to the story form so we can re-use it as a component
 const StoryForm = ({ data, handleChange, handleSubmit, handleUpload, handleClick, choices }) => {
   
 

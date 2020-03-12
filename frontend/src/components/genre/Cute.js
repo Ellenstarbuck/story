@@ -9,7 +9,7 @@ class Cute extends React.Component {
     storys: []
   }
 
-
+//filtering the storys via their genre field, and only returning the users specific genre request
   async componentDidMount() {
     try {
       const res = await axios.get('/api/storys') 

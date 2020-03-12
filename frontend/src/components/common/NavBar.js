@@ -3,16 +3,22 @@ import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/auth'
 
 class Navbar extends React.Component {
+  //attaching booleon value to nav bar to give control over what sections the user can see depending on whether
+  //they have a token or not
   state = { navbarOpen: false }
-
 
   toggleNavbar = () => {
     this.setState({ navbarOpen: !this.state.navbarOpen })
   }
 
+  //everytime the page re-renders we want it to check - are we on the same page or have we moved?
+  //need to ask the nav bar what the props were on a previous render.
+  //component did mount gets that as an argument
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
+      //see where i currently am on every re-render.
       this.setState({ navbarOpen: false })
+      //need a condition - if the two above are NOT the same then please close nav bar
     }
   }
 
@@ -31,6 +37,8 @@ class Navbar extends React.Component {
             <Link className="navbar-item"to="/">Home</Link>
             <Link className="navbar-item" to="/about">How does this work?</Link>
             <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
+              {/* if navbar is open then apply the class of 'is active to it'. 
+              If not then make it an empty string and do the on click */}
               <span></span>
               <span></span>
               <span></span>

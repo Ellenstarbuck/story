@@ -7,7 +7,6 @@ from .models import Story, Line
 
 from .serializers import StorySerializer, LineSerializer, PopulatedStorySerializer, UserSerializer
 
-# Create your views here.
 
 class StoryListView(APIView):
 
@@ -65,40 +64,40 @@ class StoryDetailView(APIView):
         return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
 
 class LineListView(APIView):
+  #this router checks if the person adding the line to the story is different then the person who added a line before them
+  #if they are different then they are allowed to make the request
 
   permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def post(self, request, pk):
+        # request data user is the same as that owner
         request.data['owner'] = request.user.id
+        # get the story the line is being added to    
         request.data['story'] = pk
+        #serializing the data we have requested so we can make our checks on it (previous line and story)
         line = LineSerializer(data=request.data)
         story = Story.objects.get(pk=pk)
         serialized_story = PopulatedStorySerializer(story)
         request.data['owner'] = request.user.id
+        #getting the index of the last line
         index_last_story = len(serialized_story.data.get("lines")) - 1
+        #getting the index of the lines
         lines_list_length = len(serialized_story.data.get("lines"))
-        # list_int = int(lines_list_length)
-        print(lines_list_length)
+        #checking to see if the story has lines in it, and then getting the owner of the last line.
         if lines_list_length:
             last_story = serialized_story.data.get("lines")[index_last_story]
             last_owner = last_story.get("owner")
         if lines_list_length > 0:
+          #if there are lines on the story, and if the owner is the same as the current user, then stop them adding a line
           if last_owner.get("id") == request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
+          #if its valid, saving the story 
         if line.is_valid():
           line.save()
           story = Story.objects.get(pk=pk)
           serialized_story = PopulatedStorySerializer(story)
           return Response(serialized_story.data)
         return Response(line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)    
-        # //request data user is the same as that owner
-        # check = user == user
-#get hold of the owner of the previous line
-#print the previous line
-#go to root that you need insomina
-#do a if statement
-#map through the lines, and get the length -1
-#if the current user = this, then not allowed
 
 class LineDetailView(APIView):
 

@@ -121,17 +121,6 @@ class Register extends React.Component{
                 </div>
                 {this.state.errors.password_confirmation && <small className="help is-danger">{this.state.errors.password_confirmation}</small>}
               </div>
-              {/* <div className="field">
-                <div className="label">Picture of your favourite animal</div>
-                <div className="control">
-                  <input className={`input ${this.state.errors.profile_image ? 'is-danger' : ''}`}
-                    placeholder="Profile Image"
-                    name="profile_image"
-                    onChange={this.handleChange}
-                  />    
-                </div>
-                {this.state.errors.profile_image && <small className="help is-danger">{this.state.errors.profile_image}</small>}
-              </div> */}
               <div className="field">
                 <div className="label"><strong>About Me</strong></div>
                 <div className="control">

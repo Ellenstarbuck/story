@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # Create your models here.
+
+#story model 
 class Story(models.Model): 
   title = models.CharField(max_length=50)
   age_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(6), MaxValueValidator(12)]) 
@@ -18,7 +20,7 @@ class Story(models.Model):
 
 
 
-
+#line model - the story model is a foreign key, and it gets attached to that story model
 class Line(models.Model):
   line = models.CharField(max_length=400)
   owner = models.ForeignKey(User, related_name='lines', null=True, on_delete=models.CASCADE)

@@ -18,7 +18,7 @@ class StorySerializer(serializers.ModelSerializer): # We make this quick little 
 
 class UserSerializer(serializers.ModelSerializer):
 
-  password = serializers.CharField(write_only=True) # the write only parts on these fields ensure our password and confirmation will never be sent out wiht he profile or login views.
+  password = serializers.CharField(write_only=True) # the write only parts on these fields ensure our password and confirmation will never be sent out with the profile or login views.
   password_confirmation = serializers.CharField(write_only=True)
   storys = StorySerializer(many=True, required=False)
 
@@ -37,14 +37,21 @@ class UserSerializer(serializers.ModelSerializer):
     data['password'] = make_password(password)
     return data
 
+# the fields for the user model, password amnd password confirmation are included as they need to be there 
+# when we create a user, but they are never sent in a request for one. 
+# Note we also include the storys field to show the users storys.
+
+
   class Meta:
         model = User
-        fields = ('username', 'id', 'email', 'password', 'password_confirmation', 'profile_image', 'storys' , 'bio', 'first_name', 'last_name') # the fields for our user model, password amnd password confirmation are included as they need to be there when we create a user, but they are never sent in a request for one. Note we also include the posts field to show the users posts.
+        fields = ('username', 'id', 'email', 'password', 'password_confirmation', 'profile_image', 'storys' , 'bio', 'first_name', 'last_name') 
 
+#Serializer so that the user can edit their profile
 class EditSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
     fields = '__all__'
+    #making sure that everything on the User model is not required when the user wants to edit their profile - giving them options on what they want to change
     extra_kwargs = {'password': {'required': False}, 'image': {'required': False}, 'email': {'required': False}, 'username': {'required': False}, 'first_name':{'required': False}, 'last_name':{'required': False}}
-#want to populate the serializer with created storys from the user
-#so like attaching comments to them?
+
+

@@ -2,6 +2,7 @@ import React from 'react'
 
 const Home = () => (
 
+//static home page with image
   <section className="hero is-fullheight-with-navbar is-primary">
     <div className="hero-body">
       <div className="container">

@@ -22,12 +22,13 @@ class StoryNew extends React.Component{
   }
 
   
-
+//function which gives the user a writing prompt
   choiceArray = ['a spooky boot', 'an alien making dinner', 'your favourite food', 'a giant mouse', 'your favourite singer', 'your favourite film', 'a forgetful otter', 'a unexpected telephone call', 'a scary dream', 'a secret door', 'your best friend', 'a secret loft', 'squirrels taking over the world', 'being a pop star', 'dancing in the rain', 'a secret', 'a funny memory', 'the best cheese', 'a noisy thunderstorm', 'monsters under the bed']
 
   handleClick = e => {
     
     e.preventDefault()
+    //getting a random index from the choice array
     const choices = this.choiceArray[Math.floor(Math.random() * this.choiceArray.length)]
     this.setState({ choices }) 
 
@@ -54,6 +55,7 @@ class StoryNew extends React.Component{
     }
   }
 
+  //uploading the images to cloudinary 
   handleUpload = async ({ target: { files } }) => {
     const data = new FormData
     data.append('file', files[0])
@@ -61,6 +63,7 @@ class StoryNew extends React.Component{
     const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
     console.log(res)
     this.setState({ image: res.data.url }, () => {
+      //callback function 
       this.handleChange({ target: { name: 'image', value: res.data.url } })
     })
   }

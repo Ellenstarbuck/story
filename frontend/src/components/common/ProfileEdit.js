@@ -14,6 +14,8 @@ class ProfileEdit extends React.Component {
     } 
   }
 
+  //getting the users profile by their previous login information
+
   async componentDidMount() {
     const profileId = this.props.match.params.id
     

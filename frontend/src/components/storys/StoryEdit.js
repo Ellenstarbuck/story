@@ -16,6 +16,8 @@ class StoryEdit extends React.Component{
 
   }
 
+  //getting the user's story by looking at their previous information to prepopulate the form so they can easily edit it
+
   async componentDidMount() {
     const storyId = this.props.match.params.id
     try {
@@ -25,6 +27,7 @@ class StoryEdit extends React.Component{
       this.props.history.push('/notfound')
     }
   }
+
 
   handleChange = ({ target: { name, value } }) => {
     const data = { ...this.state.data, [name]: value }
@@ -36,10 +39,13 @@ class StoryEdit extends React.Component{
     e.preventDefault()
     const storyId = this.props.match.params.id
     try {
+      //editing the story with a PUT request
       const { data } = await axios.put(`/api/storys/${storyId}/`, 
         this.state.data, {
+          //we include our users token in the request header to autheticate them
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })
+        //taking them back to their story page
       this.props.history.push(`/storys/${data.id}`)
     } catch (err) {
       this.props.history.push('/notfound')

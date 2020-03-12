@@ -18,6 +18,7 @@
 
 }
 
+//putting a border around the image
 #storycardImage {
   border-style: solid;
   border-color: black;
@@ -25,6 +26,7 @@
 
 }
 
+//background for each genre page
 .genrebackground {
   background-image: url(../assets/background.jpg);
   background-repeat: no-repeat;
@@ -34,14 +36,16 @@
 }
 
 
-
+//manipulating the card
 .card-content {
     margin-top: auto;
 }
 
+//hiding part of the index card on the show page
 .indexHide{
   display: none
 }
+
 
 #storyCard:hover {
   transform: scale(1.1);
@@ -66,6 +70,7 @@
   color: black;
 }
 
+//background image for new story page
 .newstorybg {
   background-image: url(../assets/newstory.png);
   background-repeat: no-repeat;
@@ -74,6 +79,7 @@
 
 }
 
+//background image for login page
 .loginbg {
   background-image: url(../assets/register.png);
   background-repeat: no-repeat;
@@ -82,6 +88,7 @@
 
 }
 
+//background image for register page
 .registerbg {
   background-image: url(../assets/actualreg.png);
   background-repeat: no-repeat;
@@ -90,6 +97,7 @@
 
 }
 
+//background image for about us page
 .aboutus {
   background-image: url(../assets/aboutUs.png);
   background-repeat: no-repeat;
@@ -98,6 +106,21 @@
 
 }
 
+//story generator box for about page
+#generatorBox {
+  width: 500px;
+  background-color: #36D1B2;
+}
+
+#aboutBox {
+  opacity: 0.9;
+  height: 420px;
+  width: 500px;
+  padding: 10px;
+}
+
+
+//background image for story index page
 .storyIndex {
   background-image: url(../assets/background.jpg);
   min-height: 100vh;
@@ -106,6 +129,7 @@
 
 }
 
+//styling the story show page
 #paddingStoryShow {
   padding: 20px;
 
@@ -122,17 +146,12 @@
   margin-left: 120px;
 }
 
-#generatorBox {
-  width: 500px;
-  background-color: #36D1B2;
-}
-
 #boxBackground {
   background-color: #36D1B2;
 }
 
 
-
+//handling my font colours
 h1, h2, p, h4, #linkFont {
   color: black;
 }
@@ -158,6 +177,7 @@ p, h1, h2, h4, h5, #triggerFont {
   margin: 10px;
 }
 
+//profile page background
 .profilebg {
   background-image: url(../assets/profilebg.png);
   background-repeat: no-repeat;
@@ -167,12 +187,6 @@ p, h1, h2, h4, h5, #triggerFont {
 }
 
 
-#aboutBox {
-  opacity: 0.9;
-  height: 420px;
-  width: 500px;
-  padding: 10px;
-}
 
 
 
@@ -190,6 +204,9 @@ p, h1, h2, h4, h5, #triggerFont {
 @media only screen and (max-width: 840px) {
   .column {
     width: 100%;
+  }
+  main {
+    flex-direction: column;
   }
 }
 

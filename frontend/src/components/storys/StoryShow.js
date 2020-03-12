@@ -37,8 +37,8 @@ class StoryShow extends React.Component{
     }
   }
 
+//handler to submit a new line to the story
   handleSubmit = async e => {
-    // e.preventDefault()
     const storyId = this.props.match.params.id 
     try {
       console.log()
@@ -52,10 +52,12 @@ class StoryShow extends React.Component{
     }
   }
 
-  //check if the person who wrote the story is different to the person who is logged int
+  //Function to see if the person is allowed to add a line to the story or not
+  //check if the person who wrote the story is different to the person who is logged in
   canEdit = () => {
     const checkLines = this.state.story.lines
     try {
+      //check the auth token, if it's not the same as the owner of the last line then they are allowed to edit
       return Auth.getPayLoad().sub !== checkLines[checkLines.length-1].owner.id
     } catch(err) {
       return true
@@ -110,6 +112,7 @@ class StoryShow extends React.Component{
                 })}</strong></p>
                  <br />
                 <div className="field">
+                  {/* The box which lets them add a line will ONLY appear if they are not the owner of the story and are logged in */}
                 {this.canEdit() && !this.isOwner() && Auth.isAuthenticated() &&
                 <>
                   <form onSubmit={this.handleSubmit}>
@@ -128,6 +131,7 @@ class StoryShow extends React.Component{
                 </form>
                 </>
                 }
+                {/* stopping the user adding a line if they have just added one */}
                 {!this.canEdit() && 
                 <>
                  <br />
@@ -143,6 +147,7 @@ class StoryShow extends React.Component{
                 </>
                 }
                 </div>
+                {/* stopping the user adding a line if they have just added one or wrote the story */}
                 {this.canEdit() && this.isOwner() &&
                 <>
                  <br />
@@ -157,7 +162,7 @@ class StoryShow extends React.Component{
                 </article>
                 </>
                 }
-
+                {/* this prompt will appear if they are not logged in */}
                 {!Auth.isAuthenticated() && 
                   <div className="message-header">
                   <p>Please log in to add a line to the story</p>

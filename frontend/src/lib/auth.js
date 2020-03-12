@@ -1,3 +1,5 @@
+//static component which checks Authentication 
+
 class Auth {
   static setToken(token) {
     localStorage.setItem('token', token) 

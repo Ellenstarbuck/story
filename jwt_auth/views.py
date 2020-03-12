@@ -52,21 +52,23 @@ class ProfileView(APIView):
 
 
 class EditProfileDetailView(APIView):
-
+#get the user profile
 
     def get(self, request, pk):
       user = User.objects.get(pk=pk)
       serializer = UserSerializer(user)
       return Response(serializer.data)
 
+#edit the user profile
     def put(self, request, pk):
       user = User.objects.get(pk=pk)
-      updated_user = EditSerializer(user, data=request.data) #changethisto an edit serialiser
+      updated_user = EditSerializer(user, data=request.data) 
       if updated_user.is_valid():
           updated_user.save()
           return Response(updated_user.data, status=HTTP_202_ACCEPTED)
       return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
+#delete the user profile
     def delete(self, request, pk):
         user = User.objects.get(pk=pk) 
         user.delete()

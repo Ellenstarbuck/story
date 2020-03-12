@@ -1,7 +1,7 @@
 import React from 'react'
 import Popup from 'reactjs-popup'
 
-
+//About us component
 
 class About extends React.Component {
 
@@ -15,7 +15,7 @@ class About extends React.Component {
     } 
   }
 
-
+//When the user presses click each function will generate a random part of the sentence for the 'story generator'
   handleClick = (e) => {
     e.preventDefault()
     this.beginningFunction()
@@ -27,7 +27,7 @@ class About extends React.Component {
   
 
 
-
+//beginning of sentence
   beginningArray = [ 'A Busy', 'A Lazy', 'A Careless', 'A Clumsy', 'A Nimble', 'A Brave', 'A Mighty', 'A Meek', 'A Clever', 'A Dull','A Afraid', 'A Scared', 'A Cowardly', 'A Bashful', 'A Proud', 'A Fair', 'A Greedy', 'A Wise','A Foolish','A Tricky','A Truthful','A Loyal', 'A Happy', 'A Cheerful', 'A Joyful', 'A Carefree','A Friendly','A Moody', 'A Crabby', 'A Cranky','A Awful', 'A Gloomy', 'A Angry', 'A Worried','A Excited', 'A Bored','A Silly', 'A Sleepy',]
 
 
@@ -36,6 +36,7 @@ class About extends React.Component {
     return this.setState({ beginning }) 
   }
 
+  //subject of story
   subjectArray = ['cat','dog', 'dragon', 'minion', 'apple', 'car', 'kitten', 'spider', 'pig', 'horse', 'mouse', 'pizza','monster', 'mum', 'dad', 'grandad', 'grandma', 'teacher', 'lady', 'man', 'boy', 'girl', 'dancer', 'doctor', 'scientist', 'king', 'queen', 'Godzilla', 'ostrich', 'bear', 'puppy', 'prime-minister', 'pizza']
   
   subjectFunction() {
@@ -44,7 +45,7 @@ class About extends React.Component {
     
   }
 
-
+//what the subject will do
   middleArray = ['went to the zoo', 'went to the cinema', 'ate lots of cakes', 'danced in the rain', 'found a secret door', 'went to America', 'had a big pie', 'had a bath in jelly', 'had a bath in beans', 'went to Disney land', 'fell asleep', 'did a little fart', 'did a big fart', 'read a great book', 'told a funny joke']
 
  middleFunction() {
@@ -53,6 +54,7 @@ class About extends React.Component {
     
   }
 
+  //conclusion of story
   endArray = ['and was arrested.', 'and threw up.', 'and everyone laughed.', 'and took over the world.', 'and lived happily ever after.', 'and went home and had a nap.', 'and wrote a book about it.', 'and sang a song about it.', 'and won an award.', 'and felt hungry.', 'and threw a party.', 'and didn\'t tell anyone.', 'and told everyone.']
 
   endFunction() {

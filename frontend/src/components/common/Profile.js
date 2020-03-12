@@ -92,6 +92,7 @@ class Profile extends React.Component {
         </div>
       </div>
       </div>
+      </div>
       </section>
       </div>
       </div>

@@ -6,6 +6,8 @@ import jwt
 
 User = get_user_model()
 
+#authentication for backend requests - checking the user has a token
+
 class JWTAuthentication(BasicAuthentication):
 
     def authenticate(self, request):
