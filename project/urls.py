@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/storys/', include('storys.urls')),
     path('api/genres/', include('genres.urls')),
     path('api/', include('jwt_auth.urls')),
-    path('storys/', index)
+    path('storys/', index),
+    path('storys/3/', index)
     
     ]
