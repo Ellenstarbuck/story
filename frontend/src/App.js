@@ -24,35 +24,37 @@ import ProfileEdit from './components/common/ProfileEdit'
 import ErrorPage from './components/common/ErrorPage'
 
 
-const App = () => (
-  <BrowserRouter>
-    <main>
-      <NavBar />
-      <Switch>
-      <Route exact path='/'component={Home} /> 
-      <SecureRoute path="/storys/:id/edit"component={StoryEdit}/>
-      <SecureRoute path='/storys/new'component={StoryNew} />
-      <Route path='/storys/:id'component={StoryShow} /> 
-      <SecureRoute path='/profile/:id/edit'component={ProfileEdit}/>
-      <Route path='/storys'component={StoryIndex} />
-      <Route path='/magic'component={Magic} />
-      <Route path='/cute'component={Cute} />
-      <Route path='/funny'component={Funny} />
-      <Route path='/internet'component={Internet} />
-      <Route path='/space'component={Space} />
-      <Route path='/spooky'component={Spooky} />
-      <Route path="/register"component={Register}/>
-      <Route path="/login"component={Login}/>
-      <SecureRoute path="/profile"component={Profile}/>
-      <Route path="/about"component={About}/>
-      <Route path="/*"component={ErrorPage}/>
-      
+const App = () => {
+  return (
+    <BrowserRouter>
+      <main>
+        <NavBar />
+        <Switch>
+        <Route exact path='/'component={Home} /> 
+        <SecureRoute path="/storys/:id/edit"component={StoryEdit}/>
+        <SecureRoute path='/storys/new'component={StoryNew} />
+        <Route path='/storys/:id'component={StoryShow} /> 
+        <SecureRoute path='/profile/:id/edit'component={ProfileEdit}/>
+        <Route path='/storys'component={StoryIndex} />
+        <Route path='/magic'component={Magic} />
+        <Route path='/cute'component={Cute} />
+        <Route path='/funny'component={Funny} />
+        <Route path='/internet'component={Internet} />
+        <Route path='/space'component={Space} />
+        <Route path='/spooky'component={Spooky} />
+        <Route path="/register"component={Register}/>
+        <Route path="/login"component={Login}/>
+        <SecureRoute path="/profile"component={Profile}/>
+        <Route path="/about"component={About}/>
+        <Route path="/*"component={ErrorPage}/>
+        
 
-      </Switch>
-    </main>
-  </BrowserRouter>
+        </Switch>
+      </main>
+    </BrowserRouter>
+  )
 
-)
+}
 
 
 export default App
