@@ -14,7 +14,8 @@ class StoryShow extends React.Component{
     const storyId = this.props.match.params.id
     console.log(storyId)
     try {
-      const res = await axios.get(`/api/storys/${storyId}`)
+      console.log('hi I am here')
+      const res = await axios.get(`/api/storys/${storyId}/`)
       console.log(this.setState({story: res.data}))
       this.setState({ story: res.data })
     } catch (err) {
@@ -30,7 +31,7 @@ class StoryShow extends React.Component{
   handleDelete = async() => {
     const storyId = this.props.match.params.id 
     try {
-      await axios.delete(`/api/storys/${storyId}`, {
+      await axios.delete(`/api/storys/${storyId}/`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       this.props.history.push('/storys')
@@ -77,7 +78,6 @@ class StoryShow extends React.Component{
   render() {
     const { story } = this.state
     if (!story) return null
-    console.log(story)
     return (
       
         

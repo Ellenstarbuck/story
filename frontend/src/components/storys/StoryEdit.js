@@ -21,7 +21,7 @@ class StoryEdit extends React.Component{
   async componentDidMount() {
     const storyId = this.props.match.params.id
     try {
-      const res = await axios.get(`/api/storys/${storyId}`)
+      const res = await axios.get(`/api/storys/${storyId}/`)
       this.setState({ data: res.data })
     } catch (err) {
       this.props.history.push('/notfound')
