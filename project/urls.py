@@ -18,12 +18,10 @@ from django.urls import path, include, re_path
 from .views import index
 
 urlpatterns = [
-    path('', index),
     path('django-admin/', admin.site.urls),
     path('admin/', include('rest_framework.urls')),
     path('api/storys/', include('storys.urls')),
     path('api/genres/', include('genres.urls')),
     path('api/', include('jwt_auth.urls')),
-    path('storys/', index),
-    path('storys/<int:pk>/', index)
+    re_path(r'^.*$', index)
     ]
