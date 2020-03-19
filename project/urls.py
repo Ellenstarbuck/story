@@ -19,10 +19,10 @@ from .views import index
 
 urlpatterns = [
     # path('', index),
+    re_path(r'^(?P<path>.*)/$', IndexView.as_view()),
     path('django-admin/', admin.site.urls),
     path('admin/', include('rest_framework.urls')),
     path('api/storys/', include('storys.urls')),
     path('api/genres/', include('genres.urls')),
-    path('api/', include('jwt_auth.urls')),
-    re_path(r'^.*$', index)
+    path('api/', include('jwt_auth.urls'))
     ]
