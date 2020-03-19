@@ -138,7 +138,7 @@ class StoryShow extends React.Component{
                  <br />
                  <article className="message is-danger">
                 <div className="message-header">
-                  <p>Good job {this.state.story.lines[0].owner.username}!</p>
+                  <p>Good job!</p>
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">

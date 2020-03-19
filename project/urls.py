@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/storys/', include('storys.urls')),
     path('api/genres/', include('genres.urls')),
     path('api/', include('jwt_auth.urls')),
-    re_path(r'^.*$', index)
+    path('storys/', index)
+    
     ]
