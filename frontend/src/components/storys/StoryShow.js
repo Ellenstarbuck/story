@@ -12,8 +12,10 @@ class StoryShow extends React.Component{
 
   async componentDidMount() {
     const storyId = this.props.match.params.id
+    console.log(storyId)
     try {
       const res = await axios.get(`/api/storys/${storyId}`)
+      console.log(this.setState({story: res.data}))
       this.setState({ story: res.data })
     } catch (err) {
       this.props.history.push('/notfound')
@@ -67,8 +69,6 @@ class StoryShow extends React.Component{
 
   //checks if the person who wrote the story is the same as the person who is logged in
   isOwner = () => {
-    console.log(this.state.story.owner.id)
-    console.log(Auth.getPayLoad().sub )
     return Auth.getPayLoad().sub === this.state.story.owner.id
   }
 
@@ -77,6 +77,7 @@ class StoryShow extends React.Component{
   render() {
     const { story } = this.state
     if (!story) return null
+    console.log(story)
     return (
       
         
