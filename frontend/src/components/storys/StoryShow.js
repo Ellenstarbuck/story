@@ -12,9 +12,7 @@ class StoryShow extends React.Component{
 
   async componentDidMount() {
     const storyId = this.props.match.params.id
-    console.log(storyId)
     try {
-      console.log('hi I am here')
       const res = await axios.get(`/api/storys/${storyId}/`)
       console.log(this.setState({story: res.data}))
       this.setState({ story: res.data })
@@ -55,12 +53,19 @@ class StoryShow extends React.Component{
     }
   }
 
+  isOwner = () => {
+    return Auth.getPayLoad().sub === this.state.story.owner.id
+  }
+
   //Function to see if the person is allowed to add a line to the story or not
   //check if the person who wrote the story is different to the person who is logged in
   canEdit = () => {
     const checkLines = this.state.story.lines
     try {
       //check the auth token, if it's not the same as the owner of the last line then they are allowed to edit
+      if (checkLines.length === 0 && this.isOwner()) {
+        return false
+      }
       return Auth.getPayLoad().sub !== checkLines[checkLines.length-1].owner.id
     } catch(err) {
       return true
@@ -69,9 +74,7 @@ class StoryShow extends React.Component{
   }
 
   //checks if the person who wrote the story is the same as the person who is logged in
-  isOwner = () => {
-    return Auth.getPayLoad().sub === this.state.story.owner.id
-  }
+  
 
   
 
@@ -109,12 +112,14 @@ class StoryShow extends React.Component{
                 <br />
                 <p><strong>{story.lineStart}
                 {story.lines.map(line => {
+                  //if it's yours then return text edit box, if it isn't then return below
                   return <>&nbsp;{line.line}</> 
                 })}</strong></p>
                  <br />
                 <div className="field">
                   {/* The box which lets them add a line will ONLY appear if they are not the owner of the story and are logged in */}
-                {this.canEdit() && !this.isOwner() && Auth.isAuthenticated() &&
+                {this.canEdit() && Auth.isAuthenticated() &&
+                //you can add a line if you are logged in, not the story owner and did not add the last line
                 <>
                   <form onSubmit={this.handleSubmit}>
                 <div className="control">
@@ -134,11 +139,12 @@ class StoryShow extends React.Component{
                 }
                 {/* stopping the user adding a line if they have just added one */}
                 {!this.canEdit() && 
+                //you can't add a line if you are the same person who just added a line
                 <>
                  <br />
                  <article className="message is-danger">
                 <div className="message-header">
-                  <p>Good job!</p>
+                  <p>Good job line owner!</p>
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">
@@ -148,21 +154,6 @@ class StoryShow extends React.Component{
                 </>
                 }
                 </div>
-                {/* stopping the user adding a line if they have just added one or wrote the story */}
-                {this.canEdit() && this.isOwner() &&
-                <>
-                 <br />
-                 <article className="message is-danger">
-                <div className="message-header">
-                  <p>Good job {this.state.story.owner.username}!</p>
-                  <button className="delete" aria-label="delete"></button>
-                </div>
-                <div className="message-body">
-                  <strong>Let's wait for the other user to add a line! Why don't you check out some <a href="/storys">more stories</a></strong> 
-                </div>
-                </article>
-                </>
-                }
                 {/* this prompt will appear if they are not logged in */}
                 {!Auth.isAuthenticated() && 
                   <div className="message-header">

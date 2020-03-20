@@ -28,7 +28,7 @@ class About extends React.Component {
 
 
 //beginning of sentence
-  beginningArray = [ 'A Busy', 'A Lazy', 'A Careless', 'A Clumsy', 'A Nimble', 'A Brave', 'A Mighty', 'A Meek', 'A Clever', 'A Dull','A Afraid', 'A Scared', 'A Cowardly', 'A Bashful', 'A Proud', 'A Fair', 'A Greedy', 'A Wise','A Foolish','A Tricky','A Truthful','A Loyal', 'A Happy', 'A Cheerful', 'A Joyful', 'A Carefree','A Friendly','A Moody', 'A Crabby', 'A Cranky','A Awful', 'A Gloomy', 'A Angry', 'A Worried','A Excited', 'A Bored','A Silly', 'A Sleepy',]
+  beginningArray = [ 'A busy', 'A lazy', 'A careless', 'A clumsy', 'A nimble', 'A brave', 'A mighty', 'A meek', 'A clever', 'A dull','A afraid', 'A scared', 'A cowardly', 'A bashful', 'A proud', 'A fair', 'A greedy', 'A wise','A foolish','A tricky','A truthful','A loyal', 'A happy', 'A cheerful', 'A joyful', 'A carefree','A friendly','A moody', 'A crabby', 'A cranky','A awful', 'A gloomy', 'A angry', 'A worried','A excited', 'A bored','A silly', 'A sleepy',]
 
 
   beginningFunction() {

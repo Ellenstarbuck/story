@@ -12,7 +12,7 @@ class Space extends React.Component {
 //filtering the storys via their genre field, and only returning the users specific genre request
   async componentDidMount() {
     try {
-      const res = await axios.get('/api/storys') 
+      const res = await axios.get('/api/storys/') 
       console.log(res.data)
       const filteredRes = res.data.filter(story => {
         if (story.genre === 'Space') {
