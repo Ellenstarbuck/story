@@ -15,8 +15,9 @@ class StoryShow extends React.Component{
     const storyId = this.props.match.params.id
     try {
       const res = await axios.get(`/api/storys/${storyId}/`)
-      console.log(this.setState({story: res.data}))
+      console.log(this.state.story)
       this.setState({ story: res.data })
+      console.log(this.state.story)
     } catch (err) {
       this.props.history.push('/notfound')
     }
@@ -44,11 +45,33 @@ class StoryShow extends React.Component{
     }
   }
 
+  //handler to do with line submissions and changes
+
+handleLineEdit = async e => {
+  
+    const storyId = this.props.match.params.id
+    const lineId = this.state.story.line.id
+    console.log(lineId)
+    console.log(storyId)
+    try {
+      //editing the line with a PUT request
+      const { data } = await axios.put(`/api/storys/${storyId}/lines/${lineId}/`, 
+        this.state.data, {
+          //we include our users token in the request header to autheticate them
+          headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        })
+        //taking them back to their story page
+      this.props.history.push(`/storys/${data.id}`)
+    } catch (err) {
+      this.props.history.push('/notfound')
+    }
+
+}
+
 //handler to submit a new line to the story
   handleSubmit = async e => {
     const storyId = this.props.match.params.id 
     try {
-      console.log()
       const res = await axios.post(`/api/storys/${storyId}/lines/`,
         this.state.lines, {
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -87,6 +110,7 @@ class StoryShow extends React.Component{
   render() {
     const { story } = this.state
     if (!story) return null
+    console.log(this.state.story)
     return (
       
         
@@ -132,9 +156,11 @@ class StoryShow extends React.Component{
                     
                 }
                 
-
-                {this.state.edit && 
                 
+                {this.state.edit && 
+                <form onSubmit={this.handleLineEdit}>
+                  <div className='field'>
+                  <div className="control">
                 <p><strong>{story.lineStart}
                 {story.lines.map(line => {
                   if (line.owner.id === Auth.getPayLoad().sub) 
@@ -142,16 +168,21 @@ class StoryShow extends React.Component{
                       return <input 
                         className="input"
                         name={line.id}
+                        placeholder={line.line}
                         value={line.line}
+                        onChange={this.handleChange}
                       />
                   }
                   return <>&nbsp;{line.line}</> 
                 })}</strong></p>
-                
+                <button type='submit' className="button is-danger">Submit new lines</button>
+                </div>
+                </div>
+                </form>
                 }
                 
 
-                 <br />
+                <br />
                 <div className="field">
                   {/* The box which lets them add a line will ONLY appear if they are not the owner of the story and are logged in */}
                 {this.canEdit() && Auth.isAuthenticated() &&
@@ -209,6 +240,7 @@ class StoryShow extends React.Component{
                 <>
                 
                 <button onClick={this.handleEdit} className="button is-danger">Edit lines</button>
+
                 
                 </>   
                 } 
