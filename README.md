@@ -1,5 +1,12 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Software Engineneering Immersive: Project 4 (Individual)
 
+TO DO
+MAKE BACKEND SO IT LETS YOU EDIT A LINE
+USE THE DELETE A LINE/EDIT A STORY MODEL TO IMPLEMENT THIS
+
+IN THE FRONT END, HAVE A HANDLE SUMIT BUTTON THAT GETS THE DATA AND EDITS/PUSHES IT
+
+
 This is my final project I built during the General Assembly Software Engineering Immersive course (Week 12).
 
 **<h1>Story Maker</h1>**

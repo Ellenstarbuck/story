@@ -104,7 +104,6 @@ class LineDetailView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def delete(self, request, **kwargs):
-
     try:
       line = Line.objects.get(pk=kwargs['line_pk'])
       if line.owner.id != request.user.id:
@@ -113,3 +112,14 @@ class LineDetailView(APIView):
       return Response(status=HTTP_204_NO_CONTENT) 
     except Line.DoesNotExist:
       return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)   
+
+  def put(self, request, **kwargs):  
+      request.data['owner'] = request.user.id 
+      line = Line.objects.get(pk=kwargs['line_pk'])
+      if line.owner.id != request.user.id:  # quick check to see if the user making the request is the same user who created the post, if not don't allow updates
+            return Response(status=HTTP_401_UNAUTHORIZED)
+      updated_line = LineSerializer(line, data=request.data)
+      if updated_line.is_valid():
+        updated_line.save()
+        return Response(updated_line.data, status=HTTP_202_ACCEPTED)
+      return Response(updated_line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)

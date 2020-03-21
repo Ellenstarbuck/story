@@ -7,7 +7,8 @@ class StoryShow extends React.Component{
   
   state = {
     story: null, 
-    lines: {}
+    lines: {},
+    edit: false
   }
 
   async componentDidMount() {
@@ -25,6 +26,11 @@ class StoryShow extends React.Component{
     const lines = { ...this.state.lines, [name]: value }
     this.setState({ lines })
   }
+
+  handleEdit = () => {
+    this.setState({ edit: true })
+  }
+
 
   handleDelete = async() => {
     const storyId = this.props.match.params.id 
@@ -110,11 +116,41 @@ class StoryShow extends React.Component{
                 <div className="column is-one-third">
                 <h4 className="title-is-4"><strong>The Story Begins...</strong></h4>
                 <br />
+                {/* this will show up if they click the edit button */}
+                
+
+
+                {!this.state.edit &&
+
+                   <p><strong>{story.lineStart} 
+                   {story.lines.map(line => {
+                      return <>&nbsp;{line.line}</> 
+                    })}
+                    </strong></p>
+
+
+                    
+                }
+                
+
+                {this.state.edit && 
+                
                 <p><strong>{story.lineStart}
                 {story.lines.map(line => {
-                  //if it's yours then return text edit box, if it isn't then return below
+                  if (line.owner.id === Auth.getPayLoad().sub) 
+                  { 
+                      return <input 
+                        className="input"
+                        name={line.id}
+                        value={line.line}
+                      />
+                  }
                   return <>&nbsp;{line.line}</> 
                 })}</strong></p>
+                
+                }
+                
+
                  <br />
                 <div className="field">
                   {/* The box which lets them add a line will ONLY appear if they are not the owner of the story and are logged in */}
@@ -138,7 +174,7 @@ class StoryShow extends React.Component{
                 </>
                 }
                 {/* stopping the user adding a line if they have just added one */}
-                {!this.canEdit() && 
+                {!this.canEdit() && !this.state.edit &&
                 //you can't add a line if you are the same person who just added a line
                 <>
                  <br />
@@ -158,7 +194,8 @@ class StoryShow extends React.Component{
                 {!Auth.isAuthenticated() && 
                   <div className="message-header">
                   <p>Please log in to add a line to the story</p>
-                </div>}
+                </div>
+                }
                 
                 {this.isOwner() && 
                 <>
@@ -166,7 +203,15 @@ class StoryShow extends React.Component{
                   <button onClick={this.handleDelete} className="button is-danger">Delete Story</button>
                 </>
                 }
-    
+
+                
+                {Auth.isAuthenticated() && !this.state.edit &&
+                <>
+                
+                <button onClick={this.handleEdit} className="button is-danger">Edit lines</button>
+                
+                </>   
+                } 
               </div>
             
           <div/>
