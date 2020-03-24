@@ -15,9 +15,7 @@ class StoryShow extends React.Component{
     const storyId = this.props.match.params.id
     try {
       const res = await axios.get(`/api/storys/${storyId}/`)
-      console.log(this.state.story)
       this.setState({ story: res.data })
-      console.log(this.state.story)
     } catch (err) {
       this.props.history.push('/notfound')
     }
@@ -50,18 +48,16 @@ class StoryShow extends React.Component{
 handleLineEdit = async e => {
   
     const storyId = this.props.match.params.id
-    const lineId = this.state.story.line.id
-    console.log(lineId)
-    console.log(storyId)
+    // const lineId = this.state.story.line.id
     try {
       //editing the line with a PUT request
-      const { data } = await axios.put(`/api/storys/${storyId}/lines/${lineId}/`, 
-        this.state.data, {
+      const res = await axios.put(`/api/storys/${storyId}/lines`, 
+        this.state.story, {
           //we include our users token in the request header to autheticate them
           headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })
         //taking them back to their story page
-      this.props.history.push(`/storys/${data.id}`)
+      this.props.history.push(`/storys/${res.data.id}`)
     } catch (err) {
       this.props.history.push('/notfound')
     }
@@ -110,7 +106,7 @@ handleLineEdit = async e => {
   render() {
     const { story } = this.state
     if (!story) return null
-    console.log(this.state.story)
+
     return (
       
         
@@ -169,7 +165,7 @@ handleLineEdit = async e => {
                         className="input"
                         name={line.id}
                         placeholder={line.line}
-                        value={line.line}
+                        value={story.line}
                         onChange={this.handleChange}
                       />
                   }

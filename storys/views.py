@@ -97,7 +97,40 @@ class LineListView(APIView):
           story = Story.objects.get(pk=pk)
           serialized_story = PopulatedStorySerializer(story)
           return Response(serialized_story.data)
-        return Response(line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)    
+        return Response(line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY) 
+
+
+  # def put(self, request, pk):
+  #       request.data['story'] = pk
+  #       line = LineSerializer(data=request.data)
+  #       story = Story.objects.get(pk=pk)
+  #       serialized_story = PopulatedStorySerializer(story)
+  #       updated_line = StorySerializer(line, data=request.data)  
+  #       if updated_line.is_valid():
+  #         updated_line.save()
+  #         story = Story.objects.get(pk=pk)
+  #         serialized_story = PopulatedStorySerializer(story)
+  #         return Response(serialized_story.data, status=HTTP_202_ACCEPTED)
+  #       return Response(updated_line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+
+  def put(self, request, pk):
+    #trying to get the lines from all the storys 
+        try: 
+          story = Story.objects.get(pk=pk)
+          serialized_story = PopulatedStorySerializer(story)
+          lines = serialized_story.data.get("lines")
+          updated_lines = PopulatedStorySerializer(lines, data=request.data)
+          if updated_lines.is_valid():
+            updated_lines.save()
+            # print (updated_story)
+            # story = Story.objects.get(pk=pk)
+            # serialized_story = PopulatedStorySerializer(story)
+            # print(serialized_story)
+            return Response(updated_lines.data, status=HTTP_202_ACCEPTED)
+          return Response(updated_lines.errors, status=HTTP_422_UNPROCESSABLE_ENTITY) 
+        except updated_lines.DoesNotExist:
+          return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
+
 
 class LineDetailView(APIView):
 
@@ -113,13 +146,14 @@ class LineDetailView(APIView):
     except Line.DoesNotExist:
       return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)   
 
-  def put(self, request, **kwargs):  
-      request.data['owner'] = request.user.id 
-      line = Line.objects.get(pk=kwargs['line_pk'])
-      if line.owner.id != request.user.id:  # quick check to see if the user making the request is the same user who created the post, if not don't allow updates
-            return Response(status=HTTP_401_UNAUTHORIZED)
-      updated_line = LineSerializer(line, data=request.data)
-      if updated_line.is_valid():
-        updated_line.save()
-        return Response(updated_line.data, status=HTTP_202_ACCEPTED)
-      return Response(updated_line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+  # def put(self, request, **kwargs):  
+  #     request.data['owner'] = request.user.id 
+  #     line = Line.objects.get(pk=kwargs['line_pk'])
+  #     if line.owner.id != request.user.id:  # quick check to see if the user making the request is the same user who created the post, if not don't allow updates
+  #           return Response(status=HTTP_401_UNAUTHORIZED)
+  #     updated_line = LineSerializer(line, data=request.data)
+  #     if updated_line.is_valid():
+  #       updated_line.save()
+  #       return Response(updated_line.data, status=HTTP_202_ACCEPTED)
+  #     return Response(updated_line.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+    
