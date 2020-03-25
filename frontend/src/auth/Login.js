@@ -32,7 +32,7 @@ class Login extends React.Component{
 
   render() {
     return (
-      <div className="hero is-fullheight-with-navbar is-primary">
+      <div className="isPrimary">
         <div className="loginbg">
       <section className="section">
         <div className="container">

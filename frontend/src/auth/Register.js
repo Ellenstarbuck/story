@@ -39,7 +39,7 @@ class Register extends React.Component{
 
   render() {
     return (
-      <div className="hero is-fullheight-with-navbar is-primary">
+      <div className="isPrimary">
         <div className="registerbg">
       <section className="section">
         <section className="container">
@@ -51,7 +51,7 @@ class Register extends React.Component{
                 <div className="label"><strong>First Name</strong></div>
                 <div className="control">
                   <input className={`input ${this.state.errors.first_name ? 'is-danger' : ''}`}
-                    placeholder="first_name"
+                    placeholder="First Name"
                     required
                     name="first_name"
                     onChange={this.handleChange}

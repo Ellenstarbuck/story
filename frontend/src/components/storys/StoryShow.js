@@ -7,8 +7,7 @@ class StoryShow extends React.Component{
   
   state = {
     story: null, 
-    lines: {},
-    edit: false
+    lines: {}
   }
 
   async componentDidMount() {
@@ -26,10 +25,6 @@ class StoryShow extends React.Component{
     this.setState({ lines })
   }
 
-  handleEdit = () => {
-    this.setState({ edit: true })
-  }
-
 
   handleDelete = async() => {
     const storyId = this.props.match.params.id 
@@ -42,27 +37,6 @@ class StoryShow extends React.Component{
       this.props.history.push('/notfound')
     }
   }
-
-  //handler to do with line submissions and changes
-
-handleLineEdit = async e => {
-  
-    const storyId = this.props.match.params.id
-    // const lineId = this.state.story.line.id
-    try {
-      //editing the line with a PUT request
-      const res = await axios.put(`/api/storys/${storyId}/lines`, 
-        this.state.story, {
-          //we include our users token in the request header to autheticate them
-          headers: { Authorization: `Bearer ${Auth.getToken()}` }
-        })
-        //taking them back to their story page
-      this.props.history.push(`/storys/${res.data.id}`)
-    } catch (err) {
-      this.props.history.push('/notfound')
-    }
-
-}
 
 //handler to submit a new line to the story
   handleSubmit = async e => {
@@ -110,13 +84,12 @@ handleLineEdit = async e => {
     return (
       
         
-          <section className="hero is-primary"> 
+          <section className="hero isPrimary"> 
           <section className="section" id="paddingStoryShow" >
           <div className="cardTitle">
-          <h2 className="title">{story.title}</h2>
+          <h2 className="titleTitle">{story.title}</h2>
           </div> 
           </section>
-         
           <div className="storyShow">
             <br />
             
@@ -136,48 +109,11 @@ handleLineEdit = async e => {
                 <div className="column is-one-third">
                 <h4 className="title-is-4"><strong>The Story Begins...</strong></h4>
                 <br />
-                {/* this will show up if they click the edit button */}
-                
-
-
-                {!this.state.edit &&
-
-                   <p><strong>{story.lineStart} 
-                   {story.lines.map(line => {
+                <p><strong>{story.lineStart} 
+                  {story.lines.map(line => {
                       return <>&nbsp;{line.line}</> 
                     })}
                     </strong></p>
-
-
-                    
-                }
-                
-                
-                {this.state.edit && 
-                <form onSubmit={this.handleLineEdit}>
-                  <div className='field'>
-                  <div className="control">
-                <p><strong>{story.lineStart}
-                {story.lines.map(line => {
-                  if (line.owner.id === Auth.getPayLoad().sub) 
-                  { 
-                      return <input 
-                        className="input"
-                        name={line.id}
-                        placeholder={line.line}
-                        value={story.line}
-                        onChange={this.handleChange}
-                      />
-                  }
-                  return <>&nbsp;{line.line}</> 
-                })}</strong></p>
-                <button type='submit' className="button is-danger">Submit new lines</button>
-                </div>
-                </div>
-                </form>
-                }
-                
-
                 <br />
                 <div className="field">
                   {/* The box which lets them add a line will ONLY appear if they are not the owner of the story and are logged in */}
@@ -201,13 +137,13 @@ handleLineEdit = async e => {
                 </>
                 }
                 {/* stopping the user adding a line if they have just added one */}
-                {!this.canEdit() && !this.state.edit &&
+                {!this.canEdit() && 
                 //you can't add a line if you are the same person who just added a line
                 <>
                  <br />
                  <article className="message is-danger">
                 <div className="message-header">
-                  <p>Good job line owner!</p>
+                  <p>Good job!</p>
                   <button className="delete" aria-label="delete"></button>
                 </div>
                 <div className="message-body">
@@ -230,16 +166,6 @@ handleLineEdit = async e => {
                   <button onClick={this.handleDelete} className="button is-danger">Delete Story</button>
                 </>
                 }
-
-                
-                {Auth.isAuthenticated() && !this.state.edit &&
-                <>
-                
-                <button onClick={this.handleEdit} className="button is-danger">Edit lines</button>
-
-                
-                </>   
-                } 
               </div>
             
           <div/>

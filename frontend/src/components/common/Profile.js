@@ -20,12 +20,12 @@ class Profile extends React.Component {
 
   async componentDidMount() {
     const userId = this.state.data.id
+    
     console.log(userId)
     try {
       const res = await axios.get(`/api/profile`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
-      console.log('hey')
       this.setState({ data: res.data })
     } catch (err) {
       console.log(err)
@@ -48,7 +48,8 @@ class Profile extends React.Component {
 
   render() {
     const { data } = this.state
-    console.log(this.state.data.id)
+    const id = this.state.data.storys[0]
+    console.log(id)
     return (
       <div className="hero is-fullheight-with-navbar is-primary">
       <div className="profilebg">
@@ -75,11 +76,13 @@ class Profile extends React.Component {
                 <div className="box" id="boxBackground">
                   {data.storys && data.storys.length === 0 && 
             <p className="subtitle is-5" id='linkFont'><Link to="/storys/new">Make a story</Link></p>}
-                {data.storys && data.storys.map(story => (
-                  <div className="box">
-                    <StoryCard key={story.id} {...story} />
-                  </div>  
-                    ))}  
+                {data.storys && data.storys.map(story => {
+                  return <div key={story.id}>
+                    <Link to={`/storys/${story.id}/`}>
+                    <p>{story.title}</p>
+                    </Link>
+                    </div>
+                })}  
                       
                     
                 </div>

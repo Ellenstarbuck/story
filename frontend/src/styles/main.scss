@@ -66,9 +66,7 @@
     background-size: contain;
     
 }
-.hero.is-primary .title{
-  color: black;
-}
+
 
 //background image for new story page
 .newstorybg {
@@ -119,7 +117,6 @@
   padding: 10px;
 }
 
-
 //background image for story index page
 .storyIndex {
   background-image: url(../assets/background.jpg);
@@ -168,6 +165,14 @@ p, h1, h2, h4, h5, #triggerFont {
   font-family: 'Spartan', sans-serif;
 }
 
+
+.titleTitle {
+    color: whitesmoke;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.125;
+}
+
 .label {
   font-family: 'Spartan', sans-serif;
 }
@@ -187,7 +192,10 @@ p, h1, h2, h4, h5, #triggerFont {
 }
 
 
-
+.isPrimary {
+  background-color: #35D1B2;
+  
+}  
 
 
 
