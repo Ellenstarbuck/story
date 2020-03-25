@@ -144,7 +144,7 @@
   "pk": 11,
   "fields": {
     "password": "pbkdf2_sha256$150000$W8SwKzKiZ9fY$aV3lBHrJ2q9JtWKHTT2ZOUPOoK0usx3dvSoq4eR6RmE=",
-    "last_login": "2020-03-03T14:09:02.067Z",
+    "last_login": "2020-03-25T12:36:56.703Z",
     "is_superuser": true,
     "username": "admin",
     "is_staff": true,
@@ -195,26 +195,6 @@
     "email": "cooldude@email.com",
     "profile_image": "",
     "bio": "I am the coolest dude",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "jwt_auth.user",
-  "pk": 14,
-  "fields": {
-    "password": "pbkdf2_sha256$150000$KyCWJhKt34iX$VL1e3WuM4VMgHsJXXeJQUCtwt9ZxqHZqXwUUcOA/1OY=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "abzdabz",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2020-03-04T15:38:20.007Z",
-    "first_name": "abz",
-    "last_name": "foreman",
-    "email": "abi@email",
-    "profile_image": "",
-    "bio": "code girl",
     "groups": [],
     "user_permissions": []
   }
