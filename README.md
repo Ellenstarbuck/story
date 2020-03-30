@@ -162,6 +162,10 @@ In the front end the user initally was allowed to add a line without login in, a
   }
 ```
 
+**<h1>Wins and Key Learning</h1>**
+
+Having learnt Python and Django the week before I was pleased with what I achieved. I am proud of the added functions, such as the random story generator as well as being able to use the backend to stop users adding in lines when they are not allowed. That was a difficult process, which taught me a lot about getting information from the backend using Django and manipulating it. I had some models I had to discard due to time constraints, so my key learning was having simple ideas for functionality - planning for less, and then adding in 'nice to have' features if time allows. 
+
 **<h1>Future Improvements</h1>**
 
 In the future, I want to build automated tests as I've only tested the app manually through Insomia and the browser.
@@ -169,7 +173,3 @@ In the future, I want to build automated tests as I've only tested the app manua
 The age form for making a new story will be a drop down form, rather then having a 'max' and 'min' validator in the model (which currently prevents the user from putting in any age outside of 6-12, and alerts them if they invalid the model).
 
 I would also like to add in a 'joke' making section, which follows the principles of the story making model and allows users to add punchlines to each other jokes. 
-
-**<h1>Successes</h1>**
-
-Having learnt Python and Django the week before I was pleased with what I achieved. I am proud of the added functions, such as the random story generator as well as being able to use the backend to stop users adding in lines when they are not allowed. That was a difficult process, which taught me a lot about getting information from the backend using Django and manipulating it. 
